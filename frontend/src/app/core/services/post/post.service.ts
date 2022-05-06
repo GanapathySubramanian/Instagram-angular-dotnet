@@ -160,6 +160,8 @@ export class PostService {
       return this.http.get( this.baseURL+'posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
           console.log(data);
+
+          return data;
           // let posts: PostHover[] = [];
           // Object.keys(data).forEach( key => {
           //   let temp: PostHover = {

@@ -27,7 +27,7 @@ namespace Instagram
         {
             services.AddControllers();
 
-            services.AddCors(options =>
+            /*services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllHeaders",
                       builder =>
@@ -36,6 +36,17 @@ namespace Instagram
                                  .AllowAnyHeader()
                                  .AllowAnyMethod();
                       });
+            });*/
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44371/", "http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
             });
 
         }
@@ -52,6 +63,8 @@ namespace Instagram
 
             app.UseRouting();
 
+            app.UseCors();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -59,7 +72,17 @@ namespace Instagram
                 endpoints.MapControllers();
             });
 
-            app.UseCors("AllowAllHeaders");
+            // app.UseCors("AllowAllHeaders");
+
+            /*app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });*/
+
+           
         }
     }
 }

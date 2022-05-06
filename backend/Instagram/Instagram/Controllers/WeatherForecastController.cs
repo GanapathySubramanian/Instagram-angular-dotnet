@@ -10,7 +10,7 @@ namespace Instagram.Controllers
 {
     [ApiController]
     [Route("api/posts")]
-    [EnableCors("AllowAllHeaders")]
+    //[EnableCors("AllowAllHeaders")]
     public class WeatherForecastController : ControllerBase
     {
 
@@ -25,7 +25,7 @@ namespace Instagram.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
-            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            //Response.Headers.Add("Access-Control-Allow-Origin", "*");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 postId = index,

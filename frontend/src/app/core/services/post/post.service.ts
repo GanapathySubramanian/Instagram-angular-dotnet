@@ -236,25 +236,26 @@ export class PostService {
 
 
     homeProfilePosts( userId: string) : Observable<any> {
-      return this.http.get( this.baseURL+'posts' ).pipe(
-        map( (data: any) => {          
+      return this.http.get( this.baseURL+'WeatherForecasts' ).pipe(
+        map( (data: any) => {
           let posts: Post[] = [];
-          
-          // data.forEach( post:any => {
-          //   let temp: Post = {
-          //     postId: data.id,
-          //     userId: post.userId,
-          //     url: post.url,
-          //     caption: post.caption,
-          //     timeStamp: data[key].timeStamp,
-          //     likes: data[key].likes,
-          //     comments: data[key].comments,
-          //     profileLink: data[key].profileLink
-          //   }
-          //   if(userId !== data[key].userId) {
-          //       posts.push(temp);
-          //   }
-          // });
+          data=data.filter((temp:any)=>temp.postId!=userId)
+          console.log(data);
+          data.forEach( (post:any) => {
+            let temp: Post = {
+              postId: post.postId,
+              userId: userId,
+              url: post.link,
+              caption: data.caption,
+              timeStamp:data.timeStamp,
+              likes: data.likeCount,
+              comments: data.commentCount,
+              profileLink: post.link
+            }
+            // if(userId !== data[key].userId) {
+                posts.push(temp);
+            // }
+          });
           return posts;
         })
       );

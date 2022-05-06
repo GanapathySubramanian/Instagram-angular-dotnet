@@ -1,0 +1,67 @@
+<div class="story-view-container">
+      <div class="insta-logo">
+        <img src="assets\Images\insta-logo-white.png" alt="" srcset="">
+      </div>
+          <div class="instagram-stories-page">
+            <div class="prev-button" (click)="prevStory()">
+              <button class="btn-prev">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+            <div class="instagram-story">
+              <div class="story-info">
+                <div class="header">
+                  <div class="progress-bar-section">
+
+                    <!-- <mat-progress-bar *ngFor="let post of posts ; let i = index" 
+                    class="progress-bar-main" 
+                    mode="determinate" 
+                    [value]="checkIfActive(i)" >
+                    </mat-progress-bar> -->
+
+                    <ngb-progressbar *ngFor="let post of posts ; let i = index" 
+                    height="3px" 
+                    [value]="checkIfActive(i)" 
+                    >
+                  </ngb-progressbar>
+
+                  </div>
+                <div class="story-header">
+                  <div class="profile-image comp">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="">
+                  </div>
+                  <div class="profile-name comp">
+                    <span>profile-name</span>
+                  </div>
+                  <div class="time comp">
+                    15m ago
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="menu comp">
+                <span>...</span>
+              </div>
+                <div class="story-footer"></div>
+              </div>
+                <div class="story-image">
+                  <img src="" id="story-img" alt="" srcset="">
+                </div>
+            </div>
+
+            <div class="next-button">
+              <button class="btn-next" (click)="nextStory()">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+    
+          </div>
+          <div class="close-overlay close-button" routerLink="/home" >
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        
+      </div>
+
+
+ 
+

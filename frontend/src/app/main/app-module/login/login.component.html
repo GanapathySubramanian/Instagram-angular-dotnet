@@ -1,0 +1,55 @@
+<div class="topmargin row">
+    <div class="col-lg-1 col-md-3 col-sm-1"></div>
+    <div class="leftanimation col-lg-5 col-md-2 col-sm-1">
+        <img src="assets/Images/backgroundimg.png" class="background" width="468.32px" height="634.15px"/>
+            <div class="mySlides fade">
+                <img src="assets/Images/scroller1.png" class="scroll">
+            </div>
+            <div class="mySlides fade">
+                <img src="assets/Images/scroller2.png" class="scroll">
+            </div>
+            <div class="mySlides fade">
+                <img src="assets/Images/scroller3.png" class="scroll">
+            </div>
+            <div class="mySlides fade">
+                <img src="assets/Images/scroller4.png" class="scroll">
+            </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-9">
+        <div class="box1">
+            <img src="assets/Images/instalogo.png" class="instalogo"/>
+            <form class="form-group" [formGroup]="signin" (ngSubmit)="onSubmit()">
+                <div class="floating-label-group">
+                    <input type="text" id="username" class="form-control" formControlName="username" autocomplete="off" required />
+                    <label class="floating-label">Phone number, username, or email</label>
+                </div>
+                <div class="floating-label-group">
+                    <input type="password" name="password" id="password-field" formControlName="password" class="form-control" autocomplete="off" required />
+                    <label class="floating-label">Password</label>
+                    <span toggle="#password-field" class="field-icon toggle-password" (click)="myFunction()">{{showhide}}</span>
+                </div>
+                <button class="btn" [disabled] = "!signin.valid">Log In</button>
+            </form>
+            <div class="line">
+                <hr/>
+                <div class="orClass"><p>OR</p></div>
+            </div>
+            <div class="display facebook">
+                <i class='fab fa-facebook-square'></i>
+                <p>Log in with Facebook</p>
+            </div>
+            <div class="forgot-password">Forgot password?</div>
+        </div>
+        <div class="display signup">
+            <p>Don't have an account?</p><a routerLink="/signup" >Sign up</a>
+        </div>
+        <div class="getapp">Get the app.</div>
+        <div class="display app">
+            <img src="assets/Images/GooglePlay.png" width="136px" height="40px" >
+            <img src="assets/Images/AppStore.png" width="134.28px" height="40px">
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-1"></div>
+</div>
+
+<app-footer></app-footer>

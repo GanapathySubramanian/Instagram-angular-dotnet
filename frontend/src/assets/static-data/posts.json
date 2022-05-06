@@ -1,0 +1,78 @@
+[
+    {
+        "postId": 1,
+        "userId": "12",
+        "username": "Lalith",
+        "url": "https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2014/07/08132212/bigstock-Travel-Photographer-Taking-A-P-302170048-min-653x300.jpg",
+        "caption": "epicpostu",
+        "timeStamp": "14 hours ago",
+        "comments": false,
+        "likes": false
+    },
+
+    {
+        "postId": 2,
+        "userId": "13",
+        "username": "Ganapathy",
+        "url": "/assets/videos/vertical.mp4",
+        "caption": "expert",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    },
+
+    {
+        "postId": 3,
+        "userId": "14",
+        "username": "Sakthivel",
+        "url": "https://i.ytimg.com/vi/z182mK0Kdyg/maxresdefault.jpg",
+        "caption": "ABCDEFG",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    }, 
+    
+    {
+        "postId": 4,
+        "userId": "15",
+        "username": "Vaishnavi",
+        "url": "https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2014/07/08132212/bigstock-Travel-Photographer-Taking-A-P-302170048-min-653x300.jpg",
+        "caption": "ExpertZ",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    }, 
+
+    {
+        "postId": 5,
+        "userId": "18",
+        "username": "Pavithra",
+        "url": "https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2014/07/08132212/bigstock-Travel-Photographer-Taking-A-P-302170048-min-653x300.jpg",
+        "caption": "TalentZZZ",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    }, 
+    
+    {
+        "postId": 6,
+        "userId": "20",
+        "username": "Lokeshvar",
+        "url": "https://igimages.gumlet.io/tamil/home/thala-ajith3032022m1.jpg?w=376&dpr=2.6",
+        "caption": "TalentZZZ",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    },
+
+    {
+        "postId": 7,
+        "userId": "25",
+        "username": "Ashiq",
+        "url": "https://igimages.gumlet.io/tamil/home/thala-ajith3032022m1.jpg?w=376&dpr=2.6",
+        "caption": "TalentZZZ",
+        "timeStamp": "2 hours ago",
+        "comments": true,
+        "likes": false
+    }
+]

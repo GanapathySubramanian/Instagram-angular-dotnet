@@ -1,0 +1,116 @@
+.main-container{
+    font-size: small;
+    color:rgb(142,142,142);
+    width: 300px;
+}
+.row-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.column-container{
+    display:flex;
+    flex-direction: column;
+}
+
+#switch-button,#follow-button{
+    border:none;
+    background-color: transparent;
+    color: #0095f6;
+    font-weight: bold;
+    font-size: 11px;
+}
+.suggested-card,.profile-card{
+    width:100%;
+    font-size:small;
+    margin:10px;
+}
+
+.profile-card{
+    padding-bottom: 15px;
+}
+
+.profile-card,.suggested-card{
+    .dp-section{
+        flex:1;
+    }
+    .info-section{
+        flex:3;
+    }
+    .switch-account-section{
+        flex:1;
+    }
+
+    .follow-account-section{
+        flex:1;
+    }
+    .dp-section,.info-section,.follow-account-section,.switch-account-section{
+        margin:0px 5px;
+    }
+}
+
+.sp-bw-comp{
+    justify-content: space-between;
+    margin:0px 5px;
+}
+
+.sp-bw-comp .bold{
+    font-size: 14px;
+}
+
+.sp-bw-comp .dark{
+    font-size: 11px;
+    font-weight: 550;
+}
+
+.gradient-background,.white-background{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+}
+
+.gradient-background{
+    height:52px;
+    width:52px;
+    background-image: linear-gradient(to bottom left, rgb(197,46,145),rgb(249,155,74));
+    .white-background{
+        height:48px;
+        width:48px;
+        background-color:#fff;
+    }
+}
+
+.dp-section{
+    img{
+        height:45px;
+        width:45px;
+        border-radius: 200px;
+        object-fit: cover;
+    }
+}
+
+.suggested-card{
+    .dp-section{
+        img{
+            height:35px;
+            width:35px;
+        }
+    }
+    
+}
+
+.dark{
+    color: black;
+}
+.bold{
+    font-weight: 600;
+}
+
+.home-footer{
+    padding: 10px;
+    margin-top: 25px;
+    font-size: 12px;
+    color: #c7c7c7;
+}

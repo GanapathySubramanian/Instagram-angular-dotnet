@@ -1,0 +1,465 @@
+<app-navbar></app-navbar>
+    <app-view-post></app-view-post>
+<div class="container-fluid" id="profileDiv">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2" id="col2" >
+            <img (click)="showchooseProfile()" src="{{checkProfileUrl(authenticatedUser.profile)}}" alt="profileicon" id="profile">
+        </div>
+     
+        <div class="col-sm-5" id="col5">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm">
+                    <p id="heading">{{authenticatedUser.username}}</p>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-md" (click)="showchooseProfile()" id="editprofile">Edit Profile</button>
+                </div>
+                <div class="col-sm">
+                    <img src="assets/Images/settings.png" id="settings">
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+             <!--follow details-->
+             <div class="row" id="followrow">
+                 <div class="col-sm-1"></div>
+                 <div class="col-sm-3"><span id="dark">{{postDetails.length}}</span> posts</div>
+                 <div class="col-sm-3"><span id="dark">2M</span> followers</div>
+                 <div class="col-sm-4"><span id="dark">1.5M</span> following</div>
+             </div>
+
+             <!--bio-->
+             <div class="bio row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <h6>{{authenticatedUser.name}}</h6>
+                    <h6 id="desc">Entrepreneur</h6>
+                    <p>💥👉Follow me as your Daily Motivation &</p>
+                    <p>Transform your life👈💥</p>
+                    <p>🔹Love-Respect-Peace-Courage</p>
+                    <p>🔹Positive-Inspire-Motivation-Success.</p>
+                </div>
+                <div class="col-sm-1"></div>
+             </div>
+        </div>  
+    </div>
+
+    <!--story highlight section-->
+
+    <div class="container-fluid" id="highlight">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9">
+                
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <img src="assets/Images/high1.jpg">
+                          <p>travel🚓</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="assets/Images/high2.jpg">
+                         <p>moment📸</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="assets/Images/high3.jpg">
+                        <p>food🍟</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="assets/Images/high4.jpg">
+                        <p>family❣</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="assets/Images/high5.jpg">
+                        <p>Music🎶</p>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+
+    <!--media query followers-->
+    <ul class="nav nav-tabs" id="followlist">
+        <div class="col-sm-4"><span id="dark">{{postDetails.length}}</span><br> posts</div>
+        <div class="col-sm-4"><span id="dark">2M</span><br> followers</div>
+        <div class="col-sm-4"><span id="dark">1.5M</span> <br>following</div>
+    </ul>
+    <!--post section-->
+    
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="container">
+                
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                   
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="material-icons">grid_on</i><span id="word">POSTS</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="saved-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false"><i class="far fa-bookmark"></i> <span id="word">SAVED</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class='far fa-id-badge'></i><span id="word">TAGGED</span></a>
+                    </li>
+                  
+            
+                </ul>
+          
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane container fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass" *ngFor="let post of postDetails"  (click)="showPost(post.postId)">
+                                <img src={{post.link}} class="img-responsive" *ngIf="isImage(post.link) && post.link" >
+                                <video *ngIf="!isImage(post.link) && post.link" preload="metadata" width="100%" height="100%">
+                                    <source src={{loadThumbnail(post.link)}}  alt="post video" autoplay muted  controls >
+                                </video>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> {{post.likeCount}} &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> {{post.commentCount}}
+                                    </div>
+                                </div>
+                                <!-- <app-post [postItem]="post" (viewPost)="displayPost($event)"></app-post> -->
+                            </div>
+                        </div>
+
+                      
+                       
+                    </div>
+                    <!--saved tab-->
+                    <div class="tab-pane container fade" id="save" role="tabpanel" aria-labelledby="saved-tab">
+
+
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save1.png" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save2.png" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save3.png" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--row 2-->
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save4.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save5.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/save6.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--row 3-->
+
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/post7.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/post8.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/post9.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--tagged tab-->
+                    <div class="tab-pane container fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/post14.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/tag1.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/tag3.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--row 2-->
+                        <div class="row">
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/tag4.gif" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/tag6.jpg" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 overlayclass">
+                                <img src="assets/Images/tag5.gif" class="img-responsive">
+                                <div class="overlay">
+                                    <div class="text">
+                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> 1,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+<footer>
+   
+        
+<ul class="list-inline">
+    <li class="list-inline-item">Meta</li>
+    <li class="list-inline-item">About</li>
+    <li class="list-inline-item">Blogs</li>
+    <li class="list-inline-item">Jobs</li>
+    <li class="list-inline-item">Help</li>
+    <li class="list-inline-item">API</li>
+    <li class="list-inline-item">Privacy</li>
+    <li class="list-inline-item">Terms</li>
+    <li class="list-inline-item">Top Accounts</li>
+    <li class="list-inline-item">Hashtags</li>
+    <li class="list-inline-item">Locations</li>
+    <li class="list-inline-item">Instagram Lite</li>
+</ul>
+
+<div class="translate" >
+    <div id="google_translate_element">
+      <div dir="ltr" >
+        <div id=":0.targetLanguage">
+          <select class="goog-te-combo">
+            <option value="af">English</option>
+            <option value="sq">Albanian</option>
+            <option value="ar">Arabic</option>
+            <option value="hy">Armenian</option>
+            <option value="az">Azerbaijani</option>
+            <option value="eu">Basque</option>
+            <option value="be">Belarusian</option>
+            <option value="bn">Bengali</option>
+            <option value="bg">Bulgarian</option>
+            <option value="ca">Catalan</option>
+            <option value="zh-CN">Chinese (Simplified)</option>
+            <option value="zh-TW">Chinese (Traditional)</option>
+            <option value="hr">Croatian</option>
+            <option value="cs">Czech</option>
+            <option value="da">Danish</option>
+            <option value="nl">Dutch</option>
+            <option value="eo">Esperanto</option>
+            <option value="et">Estonian</option>
+            <option value="tl">Filipino</option>
+            <option value="fi">Finnish</option>
+            <option value="fr">French</option>
+            <option value="gl">Galician</option>
+            <option value="ka">Georgian</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="gu">Gujarati</option>
+            <option value="ht">Haitian Creole</option>
+            <option value="iw">Hebrew</option>
+            <option value="hi">Hindi</option>
+            <option value="hu">Hungarian</option>
+            <option value="is">Icelandic</option>
+            <option value="id">Indonesian</option>
+            <option value="ga">Irish</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="kn">Kannada</option>
+            <option value="ko">Korean</option>
+            <option value="la">Latin</option>
+            <option value="lv">Latvian</option>
+            <option value="lt">Lithuanian</option>
+            <option value="mk">Macedonian</option>
+            <option value="ms">Malay</option>
+            <option value="mt">Maltese</option>
+            <option value="no">Norwegian</option>
+            <option value="fa">Persian</option>
+            <option value="pl">Polish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ro">Romanian</option>
+            <option value="ru">Russian</option>
+            <option value="sr">Serbian</option>
+            <option value="sk">Slovak</option>
+            <option value="sl">Slovenian</option>
+            <option value="es">Spanish</option>
+            <option value="sw">Swahili</option>
+            <option value="sv">Swedish</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="uk">Ukrainian</option>
+            <option value="ur">Urdu</option>
+            <option value="vi">Vietnamese</option>
+            <option value="cy">Welsh</option>
+            <option value="yi">Yiddish</option>
+          </select>
+        </div>
+      </div>
+    </div>
+   
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en'
+        }, 'google_translate_element');
+      }
+      $("#google_translate_element a span").each(function() {
+    $(this).html($(this).html().replace(/▼/,""));
+});
+
+    </script>
+  </div>
+<p class="copyright"><i class='far fa-copyright'></i> 2022 Instagram from Meta</p>
+  
+
+
+</footer>
+ 
+<div id="overlay-chooseProfile" class="upload-overlay" [ngStyle]="{'display': hidechooseProfile ? 'none' : 'block' }">
+
+    <div id="chooseProfile-section">
+
+        <div class="chooseProfile-conatiner">
+
+            <div class="chooseProfile-header">
+                <img src="{{checkProfileUrl(authenticatedUser.profile)}}" class="chooseProfile-photo">
+                <p class="head">Synced Profile Photo</p>
+                <p class="content">Instagram, Facebook</p>
+            </div>
+            <div class="chooseProfile-content-primary bb" >
+                <div class="choose-btn-wrapper">
+                    <button class="btn" style="cursor: pointer;">Upload Photo</button>
+                    <input type="file" name="myfile" (change)="selectFile($event)"/> 
+                </div>
+            </div>
+            <div class="chooseProfile-content bb">
+                <p>Manage Sync Settings</p>
+            </div>
+            <div class="chooseProfile-danger bb" >
+                <a>Remove Current Photo</a>
+            </div>
+            <div class="chooseProfile-content" (click)="closechooseProfile()">
+                <p>Cancel</p>
+            </div>
+        </div>
+
+    </div>  
+</div>
+
+
+<div id="overlay-uploadProfile" class="upload-overlay" [ngStyle]="{'display': hideuploadProfile ? 'none' : 'block' }">
+
+    <div id="uploadProfile-section">
+
+        <div class="uploadProfile-conatiner">
+
+            <div class="uploadProfile-header">
+                <p class="head">Your profile photo will also change on Facebook</p>
+                <p class="content">Because you synced your profile photo, your photo will change on both Instagram and Facebook</p>
+            </div>
+            <div class="uploadProfile-content-primary bb" >
+                <button class="ok" [disabled]="isdisableok" (click)="uploadProfile()">Ok</button>
+            </div>
+            <div class="uploadProfile-content bb">
+                <p>Manage Sync Settings</p>
+            </div>
+            <div class="uploadProfile-content" (click)="closeuploadProfile()">
+                <p>Cancel</p>
+            </div>
+        </div>
+
+    </div>  
+</div>

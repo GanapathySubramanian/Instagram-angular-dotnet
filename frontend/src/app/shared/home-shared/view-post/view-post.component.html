@@ -1,0 +1,242 @@
+<div class="main-content">
+    
+  <div class="overlay" [ngStyle]="{'display': isdisablepostview ? 'none' : 'block' }">
+      <div class="close-overlay" (click)="hidePost()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+
+      <div id="postview-section">
+
+          <div class="postview-conatiner">          
+              
+            <div class="postview-section">
+                <div class="postview-post-container">
+                  <img [src]="url" *ngIf="format==='image' && url" >
+                  <video [src]="url" *ngIf="format==='video' && url" (click)="togglePlay()" controls></video>
+                </div>
+                <div class="videopause-icon" *ngIf="format=='video' && url && !isdisablePause" >
+                  <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+
+              <div class="comment-section">
+                  <div class="profile-header">
+                    <p>
+                      <img src={{checkProfileUrl(post.profileLink)}}>
+                      <span style="display: flex; align-items: center" class="profile-leftside">
+                        <span style="font-weight:620; font-size:14px;">{{post.username}}</span>
+                        <span class="dot" [ngStyle]="{'display':isUser()?'none':'inline-block'}">•</span>
+                        <span [ngStyle]="{'display':isUser()?'none':'inline-block'}" style="font-weight: 620; font-size:14px">
+                          Following
+                        </span>
+                      </span>
+                    </p>
+                    <p style="cursor: pointer;"class="flex-dot" (click)="postOptions()">...</p>
+                 </div>
+                 <div class="comments">
+                      
+                          <div class="comment-container">
+                              <div class="user-img">
+                                <img src={{checkProfileUrl(post.profileLink)}} > 
+                              </div>
+                              <div class="other-content">
+                                <span class="username">{{post.username}}</span>
+                                <span class="comment">{{post.caption}}</span>
+                                <p class="tlr">
+                                  <span>1d</span>
+                                  
+                                </p>
+                              </div>
+                             
+                          </div>
+
+                          <div class="comment-container">
+                            <div class="user-img">
+                              <img src="https://imageio.forbes.com/blogs-images/jvchamary/files/2016/03/man_of_steel-1200x800.jpg?fit=bounds&format=jpg&width=960" > 
+                            </div>
+                            <div class="other-content">
+                              <span class="username">c.syresmith</span>
+                              <span class="comment">🤦🏾‍♂️ dad you gotta chill</span>
+                              <p class="tlr">
+                                <span>1d</span>
+                                <span>15 likes</span>
+                                <span>Reply</span>
+                              </p>
+                            </div>
+                            <div class="heart">
+                              <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+
+                        <div class="comment-container">
+                          <div class="user-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/f/ff/The_Batman_%28film%29_poster.jpg" > 
+                          </div>
+                          <div class="other-content">
+                            <span class="username">shereezampino</span>
+                            <span class="comment">Oh Lord! Not 2 of you! 😳🤣❤️</span>
+                            <span class="space"></span>
+                            <p class="tlr">
+                              <span>1d</span>
+                              <span>15 likes</span>
+                              <span>Reply</span>
+                            </p>
+                          </div>
+                          <div class="heart">
+                            <i class="fa-regular fa-heart"></i>
+                          </div>
+                      </div>
+
+                      <div class="comment-container">
+                        <div class="user-img">
+                          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" > 
+                        </div>
+                        <div class="other-content">
+                          <span class="username">lokesh</span>
+                          <span class="comment">is this possible</span>
+                          <p class="tlr">
+                            <span>1d</span>
+                            <span>15 likes</span>
+                            <span>Reply</span>
+                          </p>
+                        </div>
+                        <div class="heart">
+                          <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <div class="comment-container">
+                      <div class="user-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2202/2202090.png" > 
+                      </div>
+                      <div class="other-content">
+                        <span class="username">sakthi</span>
+                        <span class="comment">What u want buddy</span>
+                        <p class="tlr">
+                          <span>1d</span>
+                          <span>15 likes</span>
+                          <span>Reply</span>
+                        </p>
+                      </div>
+                      <div class="heart">
+                        <i class="fa-regular fa-heart"></i>
+                      </div>
+                  </div>
+
+
+      
+              </div>
+
+              <!-- <div class="like-detail-icon">
+                    <p class="left">
+
+                      <svg aria-label="Like" *ngIf="!likeStatus" (click)="changeLikeStatus()" class="_8-yf5 icon like-icon"  fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
+            
+                      <svg aria-label="Unlike"  *ngIf="likeStatus" class="icon like-button " (click)="changeLikeStatus()" color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+
+
+                       <span><svg aria-label="Like" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg></span> 
+                      <span><svg aria-label="Comment" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg></span>
+                      <span><svg aria-label="Share Post" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg></span>
+                    </p>
+                    <p class="right">
+                      <span><svg aria-label="Save" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg></span>
+                    </p>
+              </div> -->
+
+              <div class="interaction-section row-container sp-bw-comp">
+                <div class="like-comment-section row-container">
+                    <!-- <i class="fa-solid fa-heart" [ngClass]="likeStatus" (click)="changeLikeStatus()"></i> -->
+                    <!-- <i class="fa-regular fa-heart"  ></i> -->
+                    <svg aria-label="Like" *ngIf="!likeStatus" (click)="changeLikeStatus()" class="_8-yf5 icon like-icon"  fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
+                    
+                    <svg aria-label="Unlike"  *ngIf="likeStatus" class="icon like-button " (click)="changeLikeStatus()" color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+        
+        
+                    <svg aria-label="Comment" class="_8-yf5 icon"  color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    <svg aria-label="Share Post" class="_8-yf5 icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
+                </div>
+                <div class="save-section">
+                    <svg aria-label="Save" class="_8-yf5 icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg>
+                </div>
+            </div>
+
+              <div class="user-like-detail">
+                        <div class="img">
+                          <img class="img1" src="https://cdn-icons-png.flaticon.com/512/3011/3011293.png" alt="">
+                          <img class="img2" src="https://cdn-icons-png.flaticon.com/512/2202/2202090.png" alt="">
+                            <img class="img3" src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" alt="">
+                        </div>
+                        <div class="liked-align"><span class="likedby">Liked by <span class="username">ganapathy</span> and <span class="likecount">493,578</span> others</span></div>
+                        <div class="uploadedtime">
+                            <p>2 HOURS AGO</p>
+                        </div>
+              </div>
+
+              <div class="footer">
+                  <div class="smilie-align"><span><svg aria-label="Emoji" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path></svg></span></div>
+                  <input type="text" placeholder="Add a comment...">
+                  <a>Post</a>
+              </div>
+          </div>
+      </div>  
+
+  </div>
+
+
+
+
+
+
+
+
+      <div id="overlay-option" class="overlay" [ngStyle]="{'display': ispostoption ? 'block' : 'none' }">
+
+        <div id="option-section">
+
+            <div class="option-conatiner" [ngStyle]="{'display':isUser()? 'block':'none'}">
+                  <div class="option-main" >
+                    <a>Delete</a>
+                  </div>
+                  <div class="option-other" >
+                    <p>Go to post</p>
+                  </div>
+                  <div class="option-other" >
+                    <p>Embed</p>
+                  </div>
+                  <div class="option-footers"  (click)="closeOption()">
+                    <p>Cancel</p>
+                  </div>
+            </div>
+
+            <div class="option-conatiner" [ngStyle]="{'display':isUser()? 'none':'block'}">
+                  <div class="option-main" >
+                    <a>Report</a>
+                  </div>
+                  <div class="option-main" >
+                    <a>Unfollow</a>
+                  </div>
+                  <div class="option-other" >
+                    <p>Go to post</p>
+                  </div>
+                  <div class="option-other" >
+                    <p>Share to...</p>
+                  </div>
+                  <div class="option-other" >
+                    <p>Copy Link</p>
+                  </div>
+                  <div class="option-other" >
+                    <p>Embed</p>
+                  </div>
+                  <div class="option-footers"  (click)="closeOption()">
+                    <p>Cancel</p>
+                  </div>
+            </div>
+        </div>  
+
+    </div>
+
+
+
+</div>
+

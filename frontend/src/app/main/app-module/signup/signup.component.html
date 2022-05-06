@@ -1,0 +1,61 @@
+<div class="row">
+<div class="col-lg-4 col-sm-2 col-md-2"></div>
+<div class="display topmargin col-lg-4 col-sm-8 col-md-8">
+    <div>
+        <div class="box1">
+            <img src="assets/Images/instalogo.png" class="instalogo"/>
+            <h2 class="top">Sign up to see photos and videos from your friends.</h2>
+            <div class="display facebook">
+                <i class='fab fa-facebook-square'></i>
+                <p>Log in with Facebook</p>
+            </div>
+            <div class="line">
+                <hr/>
+                <div class="orClass"><p>OR</p></div>
+            </div>
+            <form class="form-group" [formGroup]="signup" (ngSubmit)="onSubmit()">
+                <div class="floating-label-group">
+                    <input type="text" id="emailno" class="form-control" name="emailno" formControlName="emailno" autocomplete="off" required />
+                    <label class="floating-label">Mobile Number or Email</label>
+                    <div *ngIf="emailno && emailno.touched && emailno.errors" style="color: red; border: 1px solid red;" class="field-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div *ngIf="emailno && emailno.touched && emailno.valid" style="color: grey; border: 1px solid grey;" class="field-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                </div>
+                <div class="floating-label-group">
+                    <input type="text" id="fullname" class="form-control" name="fullname" formControlName="fullname" autocomplete="off" required />
+                    <label class="floating-label">Full Name</label>
+                    <div *ngIf="fullname && fullname.touched && fullname.errors" style="color: red; border: 1px solid red;" class="field-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div *ngIf="fullname && fullname.touched && fullname.valid" style="color: grey; border: 1px solid grey;" class="field-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                </div>
+                <div class="floating-label-group">
+                    <input type="text" id="username" class="form-control" name="username" formControlName="username" autocomplete="off" required />
+                    <label class="floating-label">UserName</label>
+                    <div *ngIf="username && username.touched && username.errors" style="color: red; border: 1px solid red;" class="field-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    <div *ngIf="username && username.touched && username.valid" style="color: grey; border: 1px solid grey;" class="field-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                </div>
+                <div class="floating-label-group">
+                    <input type="password" name="password" id="password-field" name="password" formControlName="password" class="form-control" autocomplete="off" required />
+                    <label class="floating-label">Password</label>
+                    <div *ngIf="password && password.touched && password.valid">
+                        <span toggle="#password-field" class="field-icon toggle-password" (click)="myFunction()">{{showhide}}</span>
+                        <div style="color: grey; border: 1px solid grey;" class="field-icon-password"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </div>
+                    <div *ngIf="password && password.touched && password.errors" style="color: red; border: 1px solid red;" class="field-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                </div>
+                <button class="btn" [disabled] = "!signup.valid">Sign up</button>
+                <p class="agree">By signing up, you agree to our <span>Terms</span>, <span>Data Policy</span> and <span>Cookies Policy</span>.</p>
+            </form>
+        </div>
+        <div class="display signup">
+            <p>Have an account?</p><a routerLink="/login" >Log in</a>
+        </div>
+        <div class="getapp">Get the app.</div>
+        <div class="display app">
+            <img src="assets/Images/GooglePlay.png" width="136px" height="40px" >
+            <img src="assets/Images/AppStore.png" width="134.28px" height="40px">
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-sm-2 col-md-2"></div>
+</div>
+
+<app-footer></app-footer>

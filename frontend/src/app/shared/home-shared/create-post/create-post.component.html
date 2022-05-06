@@ -1,0 +1,158 @@
+<div class="main-content">
+    
+    <!-- Choose video or image section -->
+    <div id="overlay-choose" class="overlay" [ngStyle]="{'display': disablechoose ? 'none' : 'block' }">
+        <div class="close-overlay" (click)="closeChoose()" >
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    
+        <div id="choose-section">
+    
+            <div class="choose-conatiner">
+    
+                <div class="choose-header">
+                    Create new post
+                </div>
+                <hr>
+                <div class="choose-section">
+                    <img src="/assets/Images/upload.PNG" alt="">
+                    <p class="choose-heading">Upload photos and videos here</p>
+                    <div class="choose-btn-wrapper">
+                        <button class="btn" style="cursor: pointer;">Select from computer</button>
+                        <input accept="video/*,image/*"  type="file" name="myfile" (change)="onChange($event)"/> 
+                    </div>
+                </div>
+            </div>
+    
+        </div>  
+    </div>
+
+    <!-- Upload the file section -->
+    <div id="overlay-upload" class="overlay" [ngStyle]="{'display': disableupload ? 'none' : 'block' }">
+    
+        <div class="close-overlay" (click)="closeUpload()" >
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    
+        <div id="upload-section">
+
+            <div class="upload-conatiner">
+
+                <div class="upload-header">
+                    <span><i class="fa-solid fa-arrow-left-long"></i></span>
+                    <span>Create new post</span>
+                    <button class="share" [disabled]="isdisableShare" (click)="upload()">Share</button>
+                </div>
+                
+                <hr class="upload-hr">
+                
+                <div class="upload-content">
+                
+                    <div class="upload-img-container" >
+                        <img [src]="url" *ngIf="format==='image' && url" >
+                        <video [src]="url" *ngIf="format==='video' && url" controls></video>
+                    </div>
+                
+                    <div class="upload-caption">
+                
+                        <div class="profile-header">
+                           <img src={{authenticatedUser.profile}}>
+                           <span>{{authenticatedUser.username}}</span>
+                        </div>
+                
+                        <div class="comment">
+                            <textarea placeholder="Write a caption...." [(ngModel)]="caption" maxlength="2200" (keyup)="captionlength()"></textarea>
+                        </div>
+                
+                        <div class="emoji-section">
+                            <p class="emoji"><i class="fa-regular fa-face-smile"></i></p>
+                            <span class="comment-length">{{length}}<span>/2,200</span></span>
+                        </div>
+                
+                        <div class="footer">
+                
+                            <div class="location">
+                                <input type="text" placeholder="Add location">
+                            </div>
+                
+                            <div class="accessbility" id="accessbility" >
+                
+                                <div class="top" (click)="showAccessbility()">
+                                    <p>Accessbility</p>
+                                    <p>
+                                        
+                                        <i class="fa-solid fa-angle-down" [ngStyle]="{'display': isaccess ? 'none' : 'block' }"></i>
+                                        <i class="fa-solid fa-angle-up" [ngStyle]="{'display': isaccess ? 'block' : 'none' }"></i>
+                                    </p>
+                                </div>
+                
+                                <div class="bottom" [ngStyle]="{'display': isaccess ? 'block' : 'none' }">
+                                    <p>Alt text describes your photos for people with visual impairments. Alt text will be automatically created for your photos or you can choose to write your own.</p>
+                                    <p class="flex">
+                                        <img [src]="url" *ngIf="format==='image' && url"  width="40" height="42" >
+                                        <video [src]="url" *ngIf="format==='video' && url" controls width="40" height="42"></video>
+                                        <input class="alttext"type="text" placeholder="Write alt text...">
+                                    </p>
+                
+                                </div>
+                
+                            </div>
+                
+                            <div class="advancedsetting" >
+                
+                                <div class="top" (click)="showAdvanceSetting()">
+                                    <p>Advanced Settings</p>
+                                    <p>
+                                        <i class="fa-solid fa-angle-down" [ngStyle]="{'display': isadvance ? 'none' : 'block' }"></i>
+                                        <i class="fa-solid fa-angle-up" [ngStyle]="{'display': isadvance ? 'block' : 'none' }"></i>
+                                    </p>
+                                </div>
+                
+                                <div class="bottom" [ngStyle]="{'display': isadvance ? 'block' : 'none' }">
+                                    <div class="head">
+                                        <p>Turn off commenting</p>
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider round"></span>
+                                          </label>                                          
+                                    </div>
+                                    <p class="text">You can change this later by going to the ··· menu at the top of your post.</p>
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+            
+            </div>
+    
+        </div>  
+    
+    </div>
+
+    <div id="overlay-discard" class="overlay" [ngStyle]="{'display': isdiscard ? 'block' : 'none' }">
+
+        <div id="discard-section">
+
+            <div class="discard-conatiner">
+
+                <div class="discard-header">
+                    <p class="head">Discard post?</p>
+                    <p class="content">if you leave, your edits won't be saved</p>
+                </div>
+                <div class="discard-content" (click)="discardAll()">
+                    <a>Discard</a>
+                </div>
+                <div class="discard-footer" (click)="closeDiscard()">
+                    <p>Cancel</p>
+                </div>
+            </div>
+
+        </div>  
+    </div>
+
+</div>

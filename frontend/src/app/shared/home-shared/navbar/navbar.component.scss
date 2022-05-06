@@ -1,0 +1,756 @@
+.navbar{
+    background-color: white;
+    // overflow: hidden;
+    position: fixed;
+    width: 100%;
+    
+}
+.logo-img{
+    width: 110px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.navbar{
+    padding-top: 7px;
+    border-bottom: 1px solid gainsboro;
+    height: 60px;
+}
+
+.search-icon{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    color: rgb(161, 161, 161);
+}
+
+input[type="search"]{
+    background-color: #eeeeee;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    border: 0px;
+}
+
+.search-box{
+    position: relative;
+    margin-left: 230px;
+}
+
+input[type]::placeholder{
+    padding-left: 25px;
+    font-weight: lighter;
+}
+
+// .nav-link{
+//     width: 50px;
+//     height: 15px;
+// }
+
+.nav-link{
+    margin: 0px 4px;
+}
+
+.nav-link img{
+    width: 38px;
+    height: 33px;
+    
+}
+
+.align-img{
+    margin-right: -4px;
+}
+
+.home{
+    margin-right: 10px;
+    width: 30px;
+    height: 33px;
+}
+
+.home img{
+    width: 30px;
+}
+
+.nav-link i{
+    font-size: 23px;
+    margin-top: 5px;
+    margin-right: 1px;
+    color: black;
+}
+
+.avatar img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.navbar-collapse{
+    margin-left: 80px;
+}
+
+.dropdown-menu2
+{
+    width:230px;
+    margin-left: -170px;
+   box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+   border: none;
+   font-size: 14px;
+   position: relative;
+   z-index: 999;
+   
+}
+.dropdown-menu2 a 
+{
+    padding: 8px;
+}
+.dropdown-item i 
+{
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.logout 
+{
+    cursor: pointer;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#arrow 
+{
+    position: absolute;
+    right:24px;
+    top:-10px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right{
+  margin-left: 10px;
+  right:23px;
+    top:-21px;
+  position: absolute;
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left{
+    margin-left: 10px;
+    right:35px;
+    top:-21px;
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+#heart-menu{
+    width:530px;
+    height: 350px;
+    padding: 12px;
+    overflow-y: scroll;
+    margin-left: -440px;
+   box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+   border: none;
+   font-size: 14px;
+}
+
+#searchdropdownmenu{
+    width:360px;
+    height: 340px;
+    margin-top: 13px;
+    padding: 13px;
+   box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+ 
+   border: none;
+   margin-left: -60px;
+   font-size: 14px;
+}
+#searchdropdownmenu ul{
+    width: 100%;
+}
+.srimage 
+{
+    height:40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    margin-top: 10px;
+}
+
+.descmain
+{
+    font-weight: 590;
+    font-size: 13px;
+}
+.desc1 
+{
+    color: gray;
+}
+
+#follow
+{
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.btn
+{
+   
+    font-weight: 800px;
+    padding: 3px 6px;
+}
+
+#oneline
+{
+    margin-top: 11px;
+
+}
+.image 
+{
+    width: 40px;
+    margin-right: 20px;
+}
+.imagesq
+{
+    width: 35px;
+    margin-right: 20px;
+}
+
+
+.msg 
+{
+    margin-left: -20px;
+}
+#arrow2
+{
+    position: absolute;
+    right:54px;
+    top:-10px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right2{
+  margin-left: 10px;
+  right:52px;
+    top:-21px;
+  position: absolute;
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left2{
+    margin-left: 10px;
+    right:65px;
+    top:-21px;
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+  .dot 
+  {
+      width: 10px;
+      height: 10px;
+      margin-top: 17px;
+      border-radius: 50%;
+      background-color: dodgerblue;
+  }
+  .dot i 
+  {
+      margin-left: 25px;
+      font-size: 24px;
+      color: gray;
+      margin-top: -28px;
+  }
+
+
+  .msg i 
+  {
+      color: rgb(255, 219, 58);
+  }
+
+  #arrow3
+{
+    position: absolute;
+    right:170px;
+    top:-10px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right3{
+  margin-left: 10px;
+  right:170px;
+    top:-22px;
+  position: absolute;
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left3{
+    margin-left: 10px;
+    right:181px;
+    top:-22px;
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+#clear
+{
+    color:#0095f6;
+    font-weight: 550px;
+}
+
+.dropdown-item .row .col-sm-2
+{
+    margin-left: -20px;
+}
+.dropdown-item .row .col-sm-1 i
+{
+   margin-top: 18px;
+   margin-right:-20px;
+   font-size: 24px;
+   color: gray;
+}
+
+.dropdown-item .row .col-sm-8
+{
+   margin-top: 10px;
+   margin-left: 8px;
+  
+}
+
+.dropdown-item h6{
+    margin-left: -23px;
+}
+
+
+//media queries
+
+//div 1 
+
+@media only screen and (max-width: 640px) {
+
+    nav #col1
+    {
+        display: none;
+    }
+
+    .logo-img{
+        max-width:90px;
+        margin-left: -5px;
+        z-index: 999;
+        height: 30px;
+    }
+    
+    .navbar{
+        border-bottom: 1px solid gainsboro;
+    }
+    
+    #searchDiv 
+    {
+        display: none;
+    }
+    
+    #navbarSupportedContent
+    {
+        z-index: 999;
+        display: inline-flex;
+        max-width:240px;
+        padding: 0px;margin: 0;
+        cursor: pointer;
+        position:absolute;
+        right: 0;
+    
+    }
+
+    #navbarSupportedContent ul 
+    {
+        display: inline-block;
+        height: 50px;
+    }
+
+    #navbarSupportedContent ul li 
+    {
+        float: left;
+    }
+
+    #navbarSupportedContent ul li a i:hover
+    {
+       cursor: pointer;
+    }
+
+    .nav-link img{
+        width: 31px;
+        height: 31px;
+        
+    }
+    
+    .nav-link i{
+        font-size: 23px;
+        margin-top: 5px;
+        margin-right: 9px;
+        color: black;
+        cursor: pointer;
+    }
+    
+    .avatar img{
+        width: 25px;
+        height: 25px;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    
+    .navbar-collapse{
+        margin-left:0px;
+    }
+
+    .align-img{
+        margin-right: 10px;
+    }
+    
+    .home{
+        margin-right:9px;
+        width: 28px;
+        height: 28px;
+    }
+.dropdown-menu2 a 
+{
+    padding: 8px;
+}
+.dropdown-item i 
+{
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.logout 
+{
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#arrow 
+{
+    position: absolute;
+    right:12px;
+    top:-10px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right{
+  margin-left: 10px;
+  right:12px;
+    top:-21px;
+  position: absolute;
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left{
+    margin-left: 10px;
+    right:22px;
+    top:-21px;
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+  #heart-menu{
+   max-width: 530px;
+    box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+    border: none;
+    font-size: 14px;
+    position: absolute;
+}
+
+#arrow2
+{
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right2{
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left2{
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+.dropdown-item .row .col-sm-2
+{
+    margin-left: 0px;
+}
+.dropdown-item .row .col-sm-1 i
+{
+   margin-top: 18px;
+   margin-right:0px;
+   font-size: 24px;
+   color: gray;
+}
+
+.dropdown-item .row .col-sm-8
+{
+   margin-top: 10px;
+   margin-left: 0px;
+  
+}
+.dropdown-menu2
+{
+    width:200px;
+   box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+   border: none;
+   font-size: 14px;
+   position: relative;
+   margin-top: 10px;
+   
+}
+
+  }
+
+
+  //div 2 
+  @media only screen and (min-width:641px)  and (max-width: 985px) {
+
+    nav #col1
+    {
+        display: none;
+    }
+
+    .logo-img{
+        max-width:90px;
+        margin-left: -5px;
+        z-index: 999;
+        height: 30px;
+    }
+    
+    .navbar{
+        border-bottom: 1px solid gainsboro;
+    }
+    
+    // #searchDiv 
+    // {
+    //     position:absolute;
+    //     width: max-content;
+    //     left: 130;
+    //     // background-color: #0095f6;
+    // }
+    .search-icon{
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        color: rgb(161, 161, 161);
+    }
+    
+    input[type="search"]{
+        background-color: #eeeeee;
+        border-radius: 10px;
+        outline: none;
+        box-shadow: none;
+       width: max-content;
+        border: 0px;
+    }
+
+    .search-box{
+        position:relative;
+        margin-left: auto;
+    }
+    
+    input[type]::placeholder{
+        padding-left: 25px;
+        font-weight: lighter;
+    }
+    
+    #navbarSupportedContent
+    {
+        z-index: 999;
+        display: inline-flex;
+        max-width:240px;
+        padding: 0px;margin: 0;
+        cursor: pointer;
+        position:absolute;
+        right: 0;
+    
+    }
+
+    #navbarSupportedContent ul 
+    {
+        display: inline-block;
+        height: 50px;
+    }
+
+    #navbarSupportedContent ul li 
+    {
+        float: left;
+    }
+
+    #navbarSupportedContent ul li a i:hover
+    {
+       cursor: pointer;
+    }
+
+    .nav-link img{
+        width: 31px;
+        height: 31px;
+        
+    }
+    
+    .nav-link i{
+        font-size: 23px;
+        margin-top: 5px;
+        margin-right: 9px;
+        color: black;
+        cursor: pointer;
+    }
+    
+    .avatar img{
+        width: 25px;
+        height: 25px;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    
+    .navbar-collapse{
+        margin-left:0px;
+    }
+
+    .align-img{
+        margin-right: 10px;
+    }
+    
+    .home{
+        margin-right:9px;
+        width: 28px;
+        height: 28px;
+    }
+.dropdown-menu2 a 
+{
+    padding: 8px;
+}
+.dropdown-item i 
+{
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.logout 
+{
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#arrow 
+{
+    position: absolute;
+    right:12px;
+    top:-10px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right{
+  margin-left: 10px;
+  right:12px;
+    top:-21px;
+  position: absolute;
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left{
+    margin-left: 10px;
+    right:22px;
+    top:-21px;
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+  #heart-menu{
+   max-width: 530px;
+    box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+    border: none;
+    font-size: 14px;
+    position: absolute;
+}
+
+#arrow2
+{
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgb(255, 255, 255);
+    
+}
+.hr-right2{
+  transform: rotate(42deg);
+  width:16px;
+}
+.hr-left2{
+    position: absolute;
+    transform: rotate(-42deg);
+    width:16px;
+  }
+
+.dropdown-item .row .col-sm-2
+{
+    margin-left: 0px;
+}
+.dropdown-item .row .col-sm-1 i
+{
+   margin-top: 18px;
+   margin-right:0px;
+   font-size: 24px;
+   color: gray;
+}
+
+.dropdown-item .row .col-sm-8
+{
+   margin-top: 10px;
+   margin-left: 0px;
+  
+}
+.dropdown-menu2
+{
+    width:200px;
+   box-shadow: 1px 1px 5px gainsboro,-1px -1px 5px gainsboro;
+   border: none;
+   font-size: 14px;
+   position: relative;
+   margin-top: 10px;
+   
+}
+
+  }
+
+  .dropdown-menu2,#navbarSupportedContent ul li a{
+    i, img 
+    {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,212 @@
+<app-create-post></app-create-post>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+  <div class="col-sm-1" id="col1"></div>
+  <a class="navbar-brand col-sm-1" href="/"><img class="logo-img" src="assets/Images/instalogo.png"/></a>
+  <div class="col-sm-5" id="searchDiv">
+      <form class="form-inline  search-box">
+          <i class="material-icons search-icon">search</i>
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-toggle="dropdown" id="searchdrop">
+          <div class="dropdown-menu" id="searchdropdownmenu" aria-labelledby="searchdrop" >
+            <hr class="hr-left3">
+            <div id="arrow3"></div>
+            <hr class="hr-right3">
+            <pre><h6>Recent                      <span id="clear">Clear All</span> </h6></pre>
+            <a class="dropdown-item" href="#">
+              <div class="row">
+                <div class="col-sm-2">
+                  <img src="assets/Images/sr1.jpg" class="srimage"> 
+                </div>
+            
+                <div class="col-sm-8 descmain">
+                  Travel Destination
+                  <br>
+                  <span class="desc1">travel_destination</span>
+                </div>
+                <div class="col-sm-1">
+                  <i class="material-icons">close</i>
+                </div>
+              </div>
+            </a>
+            <a class="dropdown-item"  href="#">
+              <div class="row">
+                <div class="col-sm-2">
+                  <img src="assets/Images/sr2.png" class="srimage"> 
+                </div>
+            
+                <div class="col-sm-8 descmain">
+                  Ingenious Crafter
+                  <br>
+                  <span class="desc1">inegenious_crafter14</span>
+                </div>
+                <div class="col-sm-1">
+                  <i class="material-icons">close</i>
+                </div>
+              </div>
+            </a>
+            <a class="dropdown-item" href="#">
+              <div class="row">
+                <div class="col-sm-2">
+                  <img src="assets/Images/sr3.jpg" class="srimage"> 
+                </div>
+            
+                <div class="col-sm-8 descmain">
+                  Crystal Closet
+                  <br>
+                  <span class="desc1">crystal_closet.12</span>
+                </div>
+                <div class="col-sm-1">
+                  <i class="material-icons">close</i>
+                </div>
+              </div>
+            </a>
+           
+          
+          </div>
+         
+      </form>
+  </div>
+  <div class="collapse navbar-collapse col-sm-3" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link home"><img src={{home}} (click) = "onHomeClick()"/><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link align-img"><img src={{chat}} (click) = "onChatClick()"/><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link"><i class={{square}} (click) = "onSquareClick()"></i><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" ><i class={{compass}} (click) = "onCompassClick()"></i></a>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" ><i class={{heart}} (click) = "onHeartClick()"></i></a>
+          <div class="dropdown-menu" id="heart-menu" aria-labelledby="dropdownMenuButton" >
+              <hr class="hr-left2">
+              <div id="arrow2"></div>
+              <hr class="hr-right2">
+              <a class="dropdown-item" href="#">
+                  <div class="row">
+                     
+                      <div class="col-sm-2"><img src="assets/Images/dummyimage.png" class="image"></div>
+                      <div class="col-sm-4">
+                          <p class="msg"><strong>Follow Requests</strong><br>lavishcart + 60 others</p>
+                      </div>
+                      <div class="col-sm-4"></div>
+                      <div class="col-sm-2">
+                          <div class="dot"><i class="fa fa-angle-right"></i></div>
+                      </div>
+                  </div>
+               
+
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <h6>Yesterday</h6>
+                <div class="row">
+                   
+                    <div class="col-sm-2">   <img src="assets/Images/dummyimage.png" class="image"></div>
+                    <div class="col-sm-4">
+                        <p class="msg" id="oneline"><strong>miss.ted_19</strong>&nbsp;started following you. 1D</p>
+                    </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-light" id="follow">Following</button>
+                    </div>
+                </div>
+            </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <h6>This Month</h6>
+                <div class="row">
+                   
+                    <div class="col-sm-2"><img src="assets/Images/dummyimage.png" class="image"></div>
+                    <div class="col-sm-4">
+                        <p class="msg" id="oneline"><strong>inegenious_crafter14</strong>&nbsp;started following you. 6D</p>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary">Follow</button>
+                    </div>
+                </div>
+            </a>
+            <a class="dropdown-item" href="#">
+              <div class="row">
+                 
+                  <div class="col-sm-2"> <img src="assets/Images/dummyimage.png" class="image"></div>
+                  <div class="col-sm-4">
+                      <p class="msg" id="oneline"><strong>miss.india</strong>&nbsp;liked your comment. 😂😂🤣😂</p>
+                  </div>
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-2">
+                    <img src="assets/Images/avatar.jpg" class="imagesq">
+                  </div>
+              </div>
+          </a>
+          <a class="dropdown-item" href="#">
+            <div class="row">
+               
+                <div class="col-sm-2"> <img src="assets/Images/dummyimage.png" class="image"></div>
+                <div class="col-sm-4">
+                    <p class="msg" id="oneline"><strong>Ms.Dhoni_124</strong>&nbsp;liked your comment. ❤😍💕</p>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                  <img src="assets/Images/avatar.jpg" class="imagesq">
+                </div>
+            </div>
+        </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <div class="row">
+                   
+                    <div class="col-sm-2"> <img src="assets/Images/dummyimage.png" class="image"></div>
+                    <div class="col-sm-4">
+                        <p class="msg" id="oneline"><strong>Vijay_124</strong>&nbsp;liked your comment. 😎😁✌</p>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2">
+                      <img src="assets/Images/avatar.jpg" class="imagesq">
+                    </div>
+                </div>
+            </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <div class="row">
+                   
+                  <div class="col-sm-2">   <img src="assets/Images/dummyimage.png" class="image"></div>
+                  <div class="col-sm-4">
+                      <p class="msg" id="oneline"><strong>inegenious_crafter14</strong>&nbsp;started following you. 6D</p>
+                  </div>
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-2">
+                      <button class="btn btn-primary">Follow</button>
+                  </div>
+                </div>
+            </a>
+
+          </div>
+      </li>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link" data-toggle="dropdown" id="menu"><div class="avatar"><img (click) = "disableIcons()" src="{{checkProfileUrl(authenticatedUser.profile)}}"/></div></a>
+          
+          <div class="dropdown-menu dropdown-menu2" aria-labelledby="menu" >
+              <hr class="hr-left">
+              <div id="arrow"></div>
+              <hr class="hr-right">
+              <a class="dropdown-item" routerLink="/profile"><i class='far fa-user-circle'></i>Profile</a>
+              <a class="dropdown-item"  routerLink="/profile"><i class="far fa-bookmark"></i>Saved</a>
+              <a class="dropdown-item" routerLink="/profile"><i class="fas fa-cog"></i>Settings</a>
+              <a class="dropdown-item"  routerLink="/profile"><i class="fa fa-refresh"></i>Switch Accounts</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item logout" (click)="logout()" >Log Out</a>
+            </div>
+           
+      </li>
+      
+    </ul>
+  </div>
+  <div class="col-sm-1"></div>
+</nav>

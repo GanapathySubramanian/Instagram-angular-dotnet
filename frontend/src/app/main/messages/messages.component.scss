@@ -1,0 +1,201 @@
+.container{
+    margin-top: 70px;
+    background-color: rgba(var(--b3f,250,250,250),1);
+    width: 100%;
+}
+
+.col-sm-4{
+    background-color: white;
+    margin-top: 10px;
+    border: 1px solid gainsboro;
+}
+
+.col-sm-6{
+    background-color: white;
+    margin-top: 10px;
+    border: 1px solid gainsboro;
+    width:100%;
+    height: 530px;
+    text-align: center;
+}
+
+.chat-name div{
+    color: grey;
+    font-size: 13px;
+}
+
+.before-click img{
+    width: 100px;
+    height: 100px;
+}
+
+.before-click{
+    margin-top: 150px;
+}
+
+.before-click div{
+    padding: 5px;
+}
+
+.before-click button{
+    margin-top: 10px;
+}
+
+.display{
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid gainsboro;
+    justify-content: flex-end;
+}
+
+.name-id{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fa-edit{
+    font-size: 25px;
+    justify-content: flex-end;
+    padding-left: 100px;
+}
+
+.material-icons{
+    padding-top: 10px;
+    margin-bottom: 0%;
+}
+
+.left-chat{
+    height: 480px;
+    overflow-y: scroll;
+}
+
+.single-chat{
+    display: flex;
+    padding: 10px;
+}
+
+.single-chat:hover{
+    background-color: #edece8;
+}
+
+.single-chat img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat-name{
+    margin-left: 20px;
+}
+
+.chat-name p{
+    margin-bottom: 0%;
+}
+
+.chat-box{
+    overflow-y: scroll;
+    height: 420px;
+}
+
+.chat-header{
+    height: 55px;
+}
+
+.chat-header .col-sm-10,.col-sm-2{
+    margin-top: 14px;
+}
+
+.chat-header .names{
+    margin-top: -7px;
+}
+
+.chat-header span{
+    font-size: 12px;
+    color: #8e8e8e;
+    margin-top: -10px;
+    margin-left: 3px;
+}
+
+.chat-header img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.chat-input{
+    height: 30px;
+}
+
+.chat-box{
+    align-items: end;
+}
+
+.chat-box .first{
+    float: left;
+    margin-top: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid gainsboro;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.chat-box .second{
+    float: right;
+    background-color: #f0f2f0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    margin-right: 20px;
+    margin-top: 350px;
+}
+
+.chat-input input{
+    width: 90%;
+    height: 40px;
+    border: 1px solid gainsboro;
+    border-radius: 20px;
+    position: relative;
+    padding-left: 60px;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+}
+
+.emoji1{
+    position: absolute;
+    left:55px;
+    margin-top: 8px;
+}
+
+.emoji2{
+    position: absolute;
+    right: 100px;
+    margin-top: 8px;
+}
+.emoji3{
+    position: absolute;
+    right: 60px;
+    margin-top: 8px;
+}
+
+.lead.emoji-picker-container {
+    width: 300px;
+    display: block;
+    input {
+      width: 100%;
+      height: 50px;
+    }
+}
+
+.show{
+    display: none;
+}

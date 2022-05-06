@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<app-view-post></app-view-post>
+  <div class="container" >
+    <div class="grid-container" >
+        <span *ngFor="let post of postDetails ; let i = index" [ngClass]="checkFormat(post.link,i+1)">
+        <div class="post-container" (click)="showPost(post.postId)"  *ngIf="isImage(post.link) && post.link " > 
+            <img src={{post.link}}  >
+            <div class="blur"></div>
+            <div class="info">
+                <div class="like-section">
+                    <p>	🤍</p>
+                    <p id="likeCount">{{post.likeCount}}</p>
+                </div>
+                <div class="comment-section">
+                    <p>💬</p>
+                    <p id="commentCount">{{post.commentCount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="post-container video-post" (click)="showPost(post.postId)"  *ngIf="!isImage(post.link) && post.link " > 
+            <video  preload="metadata" width="100%" height="100%">
+                <source src={{loadThumbnail(post.link)}}  alt="post video" autoplay muted  controls >
+            </video>
+            <div class="blur"></div>
+            <div class="info">
+                <div class="like-section">
+                    <p>	🤍</p>
+                    <p id="likeCount">0</p>
+                </div>
+                <div class="comment-section">
+                    <p>💬</p>
+                    <p id="commentCount">0</p>
+                </div>
+            </div>
+        </div>
+    </span>
+    </div>
+    
+    </div>
+
+<app-footer></app-footer>

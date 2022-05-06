@@ -1,0 +1,41 @@
+carousel{
+    z-index: 2;
+}
+.username {
+    font-weight: 300;
+    font-size: x-small;
+    margin: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.carousel-cell{
+    display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}
+
+    .gradient-background,.white-background{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 200px;
+        
+    }
+    .gradient-background{
+        height:52px;
+        width:52px;
+        background-image: linear-gradient(to bottom left, rgb(197,46,145),rgb(249,155,74));
+        .white-background{
+            height:48px;
+            width:48px;
+            background-color:#fff;
+            img{
+                height:45px;
+                width:45px;
+                border-radius: 200px;
+                object-fit: cover;
+            }
+        }
+    }

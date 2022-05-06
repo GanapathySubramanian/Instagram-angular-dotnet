@@ -1,0 +1,15 @@
+<carousel [height]="80" [cellWidth]="52" [margin]="10"  >
+
+
+    <div class="carousel-cell" routerLink="/stories" *ngFor="let user of users">
+        <div class="gradient-background">
+                <div class="white-background">
+                    <img src={{checkProfileUrl(user.profile)}} alt="">
+                </div>
+        </div>  
+        <div  class="username">
+            {{user.name}}
+        </div> 
+    </div>
+</carousel>
+

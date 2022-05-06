@@ -10,7 +10,7 @@ import {map, Observable, Subject} from "rxjs";
 export class UserService {
 
 
-  private baseURL: string = 'https://instagram-clone-e824c-default-rtdb.firebaseio.com/';
+  private baseURL: string = 'https://localhost:5001/api/';
 
   private _authUser = new Subject<User>();
   readonly $authUser = this._authUser.asObservable();
@@ -19,20 +19,20 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.baseURL + 'users.json').pipe( map((data: any) => {
-      if(data){
-      let users: User[] = [];
-      Object.keys(data).forEach(key => {
-        let temp: User = {
-          id: key,
-          username: data[key].username,
-          email: data[key].email,
-          name: data[key].name,
-          profile: data[key].profile,
-          password: data[key].password
-        }
-        users.push(temp);
-      })
+    return this.http.get(this.baseURL + 'users').pipe( map((users: any) => {
+      if(users){
+      // let users: User[] = [];
+      // Object.keys(data).forEach(key => {
+      //   let temp: User = {
+      //     id: key,
+      //     username: data[key].username,
+      //     email: data[key].email,
+      //     name: data[key].name,
+      //     profile: data[key].profile,
+      //     password: data[key].password
+      //   }
+      //   users.push(temp);
+      // })
       return users;
     } else{
       return [];

@@ -525,19 +525,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GanapathySubramanian\\.nuget\\packages\\": {}
+    "C:\\Users\\VC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GanapathySubramanian\\Desktop\\instagram-clone\\backend\\Instagram\\Instagram\\Instagram.csproj",
+      "projectUniqueName": "E:\\.Net\\.Net projs\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
       "projectName": "Instagram",
-      "projectPath": "C:\\Users\\GanapathySubramanian\\Desktop\\instagram-clone\\backend\\Instagram\\Instagram\\Instagram.csproj",
-      "packagesPath": "C:\\Users\\GanapathySubramanian\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GanapathySubramanian\\Desktop\\instagram-clone\\backend\\Instagram\\Instagram\\obj\\",
+      "projectPath": "E:\\.Net\\.Net projs\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
+      "packagesPath": "C:\\Users\\VC\\.nuget\\packages\\",
+      "outputPath": "E:\\.Net\\.Net projs\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\GanapathySubramanian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\VC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

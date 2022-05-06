@@ -28,7 +28,7 @@ export class PostService {
   $postid = this.postid.asObservable();
 
 
-  private baseURL: string = 'https://localhost:44371/api/'
+  private baseURL: string = 'https://localhost:5001/api/'
 
   constructor( private http: HttpClient) { }
 
@@ -236,24 +236,25 @@ export class PostService {
 
 
     homeProfilePosts( userId: string) : Observable<any> {
-      return this.http.get( this.baseURL+'posts.json' ).pipe(
+      return this.http.get( this.baseURL+'posts' ).pipe(
         map( (data: any) => {          
           let posts: Post[] = [];
-          Object.keys(data).forEach( key => {
-            let temp: Post = {
-              postId: key,
-              userId: data[key].userId,
-              url: data[key].url,
-              caption: data[key].caption,
-              timeStamp: data[key].timeStamp,
-              likes: data[key].likes,
-              comments: data[key].comments,
-              profileLink: data[key].profileLink
-            }
-            if(userId !== data[key].userId) {
-                posts.push(temp);
-            }
-          });
+          
+          // data.forEach( post:any => {
+          //   let temp: Post = {
+          //     postId: data.id,
+          //     userId: post.userId,
+          //     url: post.url,
+          //     caption: post.caption,
+          //     timeStamp: data[key].timeStamp,
+          //     likes: data[key].likes,
+          //     comments: data[key].comments,
+          //     profileLink: data[key].profileLink
+          //   }
+          //   if(userId !== data[key].userId) {
+          //       posts.push(temp);
+          //   }
+          // });
           return posts;
         })
       );

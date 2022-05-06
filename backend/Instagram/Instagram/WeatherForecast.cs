@@ -4,7 +4,7 @@ namespace Instagram
 {
     public class WeatherForecast
     {
-        public int postId { get; set; }
+        public int Id { get; set; }
 
         public string link { get; set; }
 

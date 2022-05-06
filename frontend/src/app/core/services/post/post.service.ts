@@ -157,7 +157,7 @@ export class PostService {
 
   getAllPosts():Observable<any>{
 
-      return this.http.get( this.baseURL+'posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
+      return this.http.get( this.baseURL+'WeatherForecasts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
           console.log(data);
 

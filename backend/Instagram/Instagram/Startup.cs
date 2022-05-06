@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Instagram.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Instagram
 {
@@ -26,6 +28,9 @@ namespace Instagram
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<PostsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             /*services.AddCors(options =>
             {

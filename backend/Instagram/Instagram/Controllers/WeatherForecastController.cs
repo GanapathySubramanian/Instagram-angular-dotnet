@@ -29,7 +29,7 @@ namespace Instagram.Controllers
             //Response.Headers.Add("Access-Control-Allow-Origin", "*");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                postId = index,
+                Id = index,
                 link = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1",
                 likeCount = 1,
                 commentCount=0

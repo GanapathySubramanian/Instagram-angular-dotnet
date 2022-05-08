@@ -51,6 +51,25 @@ namespace Instagram.Data
                 context.Posts.Add(s);
             }
             context.SaveChanges();
+
+            var user = new User[]
+            {
+                new User{username = "lalith",
+                name = "lalith",
+                email = "yvlk@gmail.com",
+                password = "Yvlk@123",
+                profile = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1"},
+                new User{username = "vaish_sk",
+                name = "Vaish",
+                email = "svaish2000@gmail.com",
+                password = "Vaish@123",
+                profile = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1"},
+            };
+            foreach (User c in user)
+            {
+                context.User.Add(c);
+            }
+            context.SaveChanges();
         }
     }
 }

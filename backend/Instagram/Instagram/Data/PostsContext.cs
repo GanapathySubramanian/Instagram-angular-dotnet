@@ -7,9 +7,11 @@ namespace Instagram.Data
         {
         }
         public DbSet<WeatherForecast> Posts { get; set; }
+        public DbSet<User> User { get; set; }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<WeatherForecast>().ToTable("Posts");
+            modelbuilder.Entity<User>().ToTable("Users");
         }
     }
 }

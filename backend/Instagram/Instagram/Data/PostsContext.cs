@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Instagram.Models;
 namespace Instagram.Data
 {
     public class PostsContext : DbContext
@@ -12,10 +13,14 @@ namespace Instagram.Data
         {
             modelbuilder.Entity<User>().ToTable("Users");
             modelbuilder.Entity<Post>().ToTable("Posts");
-    
+            
+
             modelbuilder.Entity<Post>()
                 .HasOne(u => u.user)
                 .WithMany(p => p.post);
+            
+            modelbuilder.Entity<Like>().ToTable("Likes");
         }
+        public DbSet<Instagram.Models.Like> Like { get; set; }
     }
 }

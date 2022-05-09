@@ -21,8 +21,21 @@ export class PostComponentComponent implements OnInit {
   ngOnInit(): void {
     this.postservice.homeProfilePosts(this.userService.getAuthUser().id).subscribe(data => {    
       this.posts = data;
-      console.log(this.posts);
+      console.log("saihasuiaisai");
       
+      console.log(this.posts);
+      this.posts.forEach((post:Post)=>{
+        if(post.likes!=0){
+          this.postservice.userIsLiked(post.user.id,post.postId).subscribe((like)=>{
+            if(like!=undefined){
+              post.isLiked=true;
+              post.liked=like;
+            }else{
+              post.isLiked=false;
+            }
+          })
+        }
+      })
       // this.posts.forEach((post:Post) => {
       //   this.userService.getUserWithId(post.user.id).subscribe( (user) => {
       //     post.user.username = user.username;

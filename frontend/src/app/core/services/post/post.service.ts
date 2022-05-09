@@ -35,12 +35,7 @@ export class PostService {
   getPost( postId: string): Observable<any> {
     return this.http.get(`${this.baseURL}posts/${postId}`).pipe(
       map((data:any) => {
-        // console.log("get post data");
-        
-        // console.log(data);
-        
         if(data){
-          
           data.postId = data.id;
           return data;
         }
@@ -49,7 +44,7 @@ export class PostService {
   }
 
   getPostComments( postId: string): Observable<any> {
-    return this.http.get(`${this.baseURL}comments.json`).pipe(
+    return this.http.get(`${this.baseURL}comments`).pipe(
       map((data: any) => {
         if(data){
             let comments: Comment[] = [];
@@ -76,15 +71,13 @@ export class PostService {
   createPost( post: PostForm): Observable<any> {
     post.likes = 0;
     post.comments = 0;
-    return this.http.post(this.baseURL + 'posts.json', post);
+    return this.http.post(this.baseURL + 'posts', post);
   }
 
   likePost( like: Like): Observable<any> {
-    return this.http.post( this.baseURL + 'likes.json', like).pipe(
+
+    return this.http.post( this.baseURL + 'Likes', like).pipe(
       map((data) => {
-        // console.log("userid: " + like.userId);
-        
-        // console.log('post return '+data);
         this.getPost(like.postId).subscribe( (data: Post) => {
           this.updateLikeCount(like.postId, data.likes+1).subscribe();
         });
@@ -94,9 +87,8 @@ export class PostService {
   }
 
   commentPost( comment: Comment): Observable<any> {
-    return this.http.post( this.baseURL + 'comments.json', comment).pipe(
+    return this.http.post( this.baseURL + 'comments', comment).pipe(
       map((data) => {
-        // console.log('post return '+data);
         this.getPost(comment.postId).subscribe( (data: Post) => {
           this.updateLikeCount(comment.postId, data.comments+1).subscribe();
         });
@@ -106,17 +98,19 @@ export class PostService {
   }
 
   updateLikeCount( postId: string, count: number): Observable<any> {
-    return this.http.patch(`${this.baseURL}posts/${postId}.json`, { likes: count });
+    console.log(postId);
+    
+    return this.http.patch(`${this.baseURL}posts/${postId}`, { likeCount: count });
   }
 
   updateCommentCount( postId: string, count: number): Observable<any> {
-    return this.http.patch(`${this.baseURL}posts/${postId}.json`, { comments: count });
+    return this.http.patch(`${this.baseURL}posts/${postId}`, { comments: count });
   }
 
    
 
   unlikePost( unlike: Like): Observable<any> {
-    return this.http.delete( `${this.baseURL}likes/${unlike.likeId}.json`).pipe(
+    return this.http.delete( `${this.baseURL}Likes/${unlike.likeId}`).pipe(
       map((data) => {
         // console.log('post return '+data);
         this.getPost(unlike.postId).subscribe( (data: Post) => {
@@ -138,8 +132,6 @@ export class PostService {
     
     return this.http.get( this.baseURL+'posts/user/'+userId ).pipe(
       map( (data: any) => {
-        console.log(data);
-        
         let posts: PostHover[] = [];
           data.forEach((res:any)=>{
             
@@ -166,18 +158,19 @@ export class PostService {
 
 
   getPostLikes(postId: string): Observable<any> {
-    return this.http.get(`${this.baseURL}likes.json`).pipe(
+    return this.http.get(`${this.baseURL}likes`).pipe(
       map((data: any) => {
+
         if(data) {
           let likes: Like[] = [];
-          Object.keys(data).forEach( key => {
+          data.forEach((res:any) => {
 
-            if( postId === data[key].postId ) {
+            if( postId === res.postId ) {
               let temp: Like = {
-                likeId: key,
-                postId: data[key].postId,
-                userId: data[key].userId,
-                timeStamp: data[key].timeStamp
+                likeId: res.likeId,
+                postId: res.postId,
+                userId: res.userId,
+                // timeStamp: data[key].timeStamp
               }
               likes.push(temp);
             }
@@ -194,7 +187,6 @@ export class PostService {
     return this.getPostLikes(postId).pipe(
       map((likes: Like[] ) => {
         return likes.find( (like: Like) => like.userId === userId);
-        
       })
     );
   }
@@ -214,7 +206,7 @@ export class PostService {
   }  
 
     isImage(url: string) {
-      url = url.split('?')[0];
+      url = url?.split('?')[0];
       return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
     }
 

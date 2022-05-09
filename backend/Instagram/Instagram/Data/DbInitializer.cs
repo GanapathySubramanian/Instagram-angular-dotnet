@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Instagram.Models;
+using System;
 using System.Linq;
 namespace Instagram.Data
 

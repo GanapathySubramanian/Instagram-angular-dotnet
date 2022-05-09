@@ -1,23 +1,23 @@
-<div class="post-card">
+<div class="post-card" *ngIf="post.user">
     <div class="card-header-section row-container">
         <div class="page-dp">
             <div class="gradient-background">
                 <div class="white-background">
-                    <img src={{checkProfileUrl(post.profileLink)}} alt="">
+                    <img src={{checkProfileUrl(post.user.profile)}} alt="">
                 </div>
             </div>   
         </div>
         <div class="page-name bold-small">
-            {{post.username}} <br/><span>India</span>
+            {{post.user.username}} <br/><span>India</span>
         </div>
         <div class="dot">
             <p style="cursor: pointer;" class="flex-dot" (click)="postOptions()">...</p>
         </div>
     </div>
     <div class="post-image">
-        <img src={{post.url}} alt="post img" id="image-post" *ngIf="isImage(post.url) && post.url" >
-        <video *ngIf="!isImage(post.url) && post.url" id="video-post" controls >
-            <source src={{loadThumbnail(post.url)}} alt="post video" autoplay muted="muted"  (click)="togglePlay()" >
+        <img src={{post.link}} alt="post img" id="image-post" *ngIf="isImage(post.link) && post.link" >
+        <video *ngIf="!isImage(post.link)&& post.link" id="video-post" controls >
+            <source src={{loadThumbnail(post.link)}} alt="post video" autoplay muted="muted"  (click)="togglePlay()" >
         </video>
             
     </div>
@@ -46,7 +46,7 @@
         <p class="like-count bold-small"> {{post.likes}} others</p>
     </div>
     <div class="desc-section small follow-name">
-        <span class="bold-small page-name">{{post.username}}</span>{{post.caption}}
+        <span class="bold-small page-name">{{post.user.username}}</span>{{post.caption}}
     </div>
     <div class="comment-section">
         View all 35 comments

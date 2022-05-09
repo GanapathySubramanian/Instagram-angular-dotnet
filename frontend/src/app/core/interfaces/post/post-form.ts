@@ -2,7 +2,7 @@ import {FileUpload} from "../../models/file-upload";
 
 export interface PostForm {
   userId: string;
-  url: string,
+  link: string,
   caption: string;
   timeStamp: Date;
   likes?: number;

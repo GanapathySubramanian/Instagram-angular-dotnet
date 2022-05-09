@@ -30,7 +30,7 @@ export class FileUploadService {
           if( type === 'profile') this.userService.uploadProfilePic( userId, downloadURL).subscribe(res=>{
             this.userService.updateProfile(this.userService.getAuthUser().id);
           });
-          else if( type === 'post' && caption) this.postService.createPost({userId,caption, url: downloadURL, timeStamp: new Date() }).subscribe();
+          else if( type === 'post' && caption) this.postService.createPost({userId,caption, link: downloadURL, timeStamp: new Date() }).subscribe();
         });
       })
     ).subscribe();

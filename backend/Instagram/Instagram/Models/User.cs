@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Instagram;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 public class User
 {
@@ -19,5 +22,7 @@ public class User
 
 	public string password { get; set; }
 
-
+	[JsonIgnore] 
+	[IgnoreDataMember] 
+	public ICollection<Post> post { get; set; }
 }

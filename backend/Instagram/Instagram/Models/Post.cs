@@ -11,5 +11,7 @@ namespace Instagram
         public int likeCount { get; set; }
 
         public int commentCount { get; set; }
+
+        public User user { get; set; }
     }
 }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Instagram;
 using Instagram.Data;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Instagram.Controllers
 {
@@ -25,14 +27,18 @@ namespace Instagram.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
-            return await _context.Posts.ToListAsync();
+           
+            return await _context.Posts.Include(p => p.user).ToListAsync();
+            //return await _context.Posts.ToListAsync();
         }
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
+
+            var post = _context.Posts.Include(x => x.user).Where(x => x.Id == id).FirstOrDefault();
+            //var post = await _context.Posts.FindAsync(id);
 
             if (post == null)
             {

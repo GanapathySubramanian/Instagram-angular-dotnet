@@ -1,5 +1,5 @@
-<div class="main-content">
-    
+
+<div class="main-content" *ngIf="post.user">    
   <div class="overlay" [ngStyle]="{'display': isdisablepostview ? 'none' : 'block' }">
       <div class="close-overlay" (click)="hidePost()">
         <i class="fa-solid fa-xmark"></i>
@@ -22,9 +22,9 @@
               <div class="comment-section">
                   <div class="profile-header">
                     <p>
-                      <img src={{checkProfileUrl(post.profileLink)}}>
+                      <img src={{checkProfileUrl(post.user.profile)}}>
                       <span style="display: flex; align-items: center" class="profile-leftside">
-                        <span style="font-weight:620; font-size:14px;">{{post.username}}</span>
+                        <span style="font-weight:620; font-size:14px;">{{post.user.username}}</span>
                         <span class="dot" [ngStyle]="{'display':isUser()?'none':'inline-block'}">•</span>
                         <span [ngStyle]="{'display':isUser()?'none':'inline-block'}" style="font-weight: 620; font-size:14px">
                           Following
@@ -40,7 +40,7 @@
                                 <img src={{checkProfileUrl(post.profileLink)}} > 
                               </div>
                               <div class="other-content">
-                                <span class="username">{{post.username}}</span>
+                                <span class="username">{{post.user?.username}}</span>
                                 <span class="comment">{{post.caption}}</span>
                                 <p class="tlr">
                                   <span>1d</span>

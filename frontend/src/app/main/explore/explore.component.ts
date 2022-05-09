@@ -20,6 +20,8 @@ export class ExploreComponent implements OnInit {
   getExplorePosts(){
     this.postservice.getAllPosts().subscribe(res=>{
       this.postDetails=res;
+      console.log(this.postDetails);
+      
       this.postDetails = this.shuffleArray();
     });
   }

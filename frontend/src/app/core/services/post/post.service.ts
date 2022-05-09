@@ -33,10 +33,15 @@ export class PostService {
   constructor( private http: HttpClient) { }
 
   getPost( postId: string): Observable<any> {
-    return this.http.get(`${this.baseURL}posts/${postId}.json`).pipe(
+    return this.http.get(`${this.baseURL}posts/${postId}`).pipe(
       map((data:any) => {
+        console.log("get post data");
+        
+        console.log(data);
+        
         if(data){
-          data.postId = postId;
+          
+          data.postId = data.id;
           return data;
         }
       })
@@ -160,19 +165,22 @@ export class PostService {
       return this.http.get( this.baseURL+'Posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
           console.log(data);
-
-          return data;
-          // let posts: PostHover[] = [];
-          // Object.keys(data).forEach( key => {
-          //   let temp: PostHover = {
-          //     postId: key,
-          //     link: data[key].url,
-          //     likeCount: data[key].likes,
-          //     commentCount: data[key].comments
-          //   }
-          //     posts.push(temp);
-          // });
-          // return posts;
+  
+          let posts: PostHover[] = [];
+          data.forEach((res:any)=>{
+            // let temp: PostHover = {
+            //       postId: data.id,
+            //       link: data.link,
+            //       likeCount: data.likeCount,
+            //       commentCount: data.commentCount
+            //     }
+            
+            res.postId=res.id
+            // posts.push(res);
+          })
+          // console.log(posts);
+          
+        return data;
         })
       );
     
@@ -218,7 +226,7 @@ export class PostService {
     this.viewpost.next(false);
 
     this.http.get<Post[]>("assets/static-data/posts.json").subscribe(data => {    
-        this.postURL.next(data.find(post => post.postId === postId)?.url!);
+        this.postURL.next(data.find(post => post.postId === postId)?.link!);
       })
   }
 
@@ -244,8 +252,8 @@ export class PostService {
           data.forEach( (post:any) => {
             let temp: Post = {
               postId: post.postId,
-              userId: userId,
-              url: post.link,
+              user: post.user,
+              link: post.link,
               caption: data.caption,
               timeStamp:data.timeStamp,
               likes: data.likeCount,

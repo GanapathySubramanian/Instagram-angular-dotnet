@@ -10,8 +10,12 @@ namespace Instagram.Data
         public DbSet<User> User { get; set; }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<Post>().ToTable("Posts");
             modelbuilder.Entity<User>().ToTable("Users");
+            modelbuilder.Entity<Post>().ToTable("Posts");
+    
+            modelbuilder.Entity<Post>()
+                .HasOne(u => u.user)
+                .WithMany(p => p.post);
         }
     }
 }

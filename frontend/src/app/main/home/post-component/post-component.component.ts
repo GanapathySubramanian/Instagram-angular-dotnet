@@ -24,8 +24,8 @@ export class PostComponentComponent implements OnInit {
       
       this.posts = data;
       this.posts.forEach((post:Post) => {
-        this.userService.getUserWithId(post.userId).subscribe( (user) => {
-          post.username = user.username;
+        this.userService.getUserWithId(post.user.id).subscribe( (user) => {
+          post.user.username = user.username;
           post.profileLink = user.profile;
           // if(post.likes!=0)
           // this.postservice.userIsLiked(this.userService.getAuthUser().userId, post.postId).subscribe((like) => {

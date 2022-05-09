@@ -67,16 +67,7 @@ namespace Instagram
                 endpoints.MapControllers();
             });
 
-            // app.UseCors("AllowAllHeaders");
-
-            /*app.UseCors(builder =>
-            {
-                builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            });*/
-
+    
            
         }
     }

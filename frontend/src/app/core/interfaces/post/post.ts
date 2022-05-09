@@ -1,11 +1,11 @@
 import {Comment} from "../react/comment";
 import { Like } from "../react/like";
+import { User } from "../user/user";
 
 export interface Post {
   postId: string;
-  userId: string;
-  username?: string;
-  url: string;
+  user:User;
+  link: string;
   caption: string;
   timeStamp: string;
   likes: number;

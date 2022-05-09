@@ -50,27 +50,25 @@ export class ViewPostComponent implements OnInit {
         console.log("data");
         console.log(data);
         
-        console.log(this.post.userId);
+        console.log(this.post.postId);
         
-        this.userService.getUserWithId(this.post.userId).subscribe((user) => {
+        // this.userService.getUserWithId(this.post.postId).subscribe((user) => {
+          // console.log(user);
           
-          this.post.username = user.username;
-          this.post.profileLink = user.profile;
-          
-          
-          
-        })
+          // this.post.user.username = user?.username;
+          // this.post.profileLink = user?.profile;
+        // })
        
-        if(this.postservice.isImage(this.post.url)){
+        if(this.postservice.isImage(this.post.link)){
           this.format='image';
         }
         else{
           this.format='video';
         }
-        this.url=this.post.url;
+        this.url=this.post.link;
         //here
         console.log(this.userService.getAuthUser().id);
-        console.log(this.post.postId);
+        // console.log(this.post.postId);
         
         
         this.postservice.userIsLiked(this.userService.getAuthUser().id, postId).subscribe((data) => {
@@ -93,7 +91,7 @@ export class ViewPostComponent implements OnInit {
 
     let user:any=localStorage.getItem('user');
     if(user){
-      if(JSON.parse(user).id===this.post.userId){
+      if(JSON.parse(user).id===this.post.user?.id){
           return true;
       }
     }

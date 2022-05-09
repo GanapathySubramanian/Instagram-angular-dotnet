@@ -21,8 +21,7 @@ export class PostComponentComponent implements OnInit {
   ngOnInit(): void {
     this.postservice.homeProfilePosts(this.userService.getAuthUser().id).subscribe(data => {    
       this.posts = data;
-      console.log("saihasuiaisai");
-      
+     
       console.log(this.posts);
       this.posts.forEach((post:Post)=>{
         if(post.likes!=0){

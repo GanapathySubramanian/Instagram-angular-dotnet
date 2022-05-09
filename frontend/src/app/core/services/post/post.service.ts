@@ -27,6 +27,8 @@ export class PostService {
   private postid = new BehaviorSubject<string>("");
   $postid = this.postid.asObservable();
 
+  private profilepost = new BehaviorSubject<PostHover[]>([]);
+  $profilepost = this.profilepost.asObservable();
 
   private baseURL: string = 'https://localhost:5001/api/'
 
@@ -99,8 +101,8 @@ export class PostService {
 
   updateLikeCount( postId: string, count: number): Observable<any> {
     console.log(postId);
-    
-    return this.http.patch(`${this.baseURL}posts/${postId}`, { likeCount: count });
+    let temp={"likeCount":count};
+    return this.http.patch(`${this.baseURL}posts/${postId}`,temp);
   }
 
   updateCommentCount( postId: string, count: number): Observable<any> {
@@ -128,15 +130,16 @@ export class PostService {
 
 
   viewProfilePosts( userId?: string) : Observable<any> {
-
-    
-    return this.http.get( this.baseURL+'posts/user/'+userId ).pipe(
+    console.log("iam the view");
+    return this.http.get(this.baseURL+'posts/user/'+userId ).pipe(
       map( (data: any) => {
-        let posts: PostHover[] = [];
+        console.log(data);
+        
           data.forEach((res:any)=>{
-            
             res.postId=res.id
           })
+          this.profilepost.next(data);
+          
         return data;
       })
     );
@@ -153,6 +156,28 @@ export class PostService {
         return data;
         })
       );
+    
+  }
+
+  deletePostById(postid:string,userid:string){
+    return this.http.delete( `${this.baseURL}Posts/${postid}`)
+    .subscribe(
+      {
+        next: (data) => {
+          console.log("changed status");
+          this.viewProfilePosts(userid).subscribe(()=>{
+            this.viewpost.next(true);
+          });
+          
+        },
+        error: (e) => {
+         
+        },
+        complete: () => {
+          
+        }
+      }
+    )
     
   }
 

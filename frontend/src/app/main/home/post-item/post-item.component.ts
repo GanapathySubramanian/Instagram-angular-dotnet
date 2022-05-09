@@ -76,7 +76,7 @@ export class PostItemComponent implements OnInit {
           this.likeStatus = false;
           this.post.likes -= 1;
         },
-        (error)=>{console.log("unlike err"+error);
+        (error)=>{console.log(error);
         }
         );
       }

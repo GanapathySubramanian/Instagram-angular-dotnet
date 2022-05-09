@@ -195,7 +195,7 @@
         <div id="option-section">
 
             <div class="option-conatiner" [ngStyle]="{'display':isUser()? 'block':'none'}">
-                  <div class="option-main" >
+                  <div class="option-main" (click)="deletePost(post.postId,post.user.id)">
                     <a>Delete</a>
                   </div>
                   <div class="option-other" >

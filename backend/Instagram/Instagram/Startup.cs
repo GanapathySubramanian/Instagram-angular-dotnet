@@ -32,16 +32,6 @@ namespace Instagram
             services.AddDbContext<PostsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            /*services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllHeaders",
-                      builder =>
-                      {
-                          builder.AllowAnyOrigin()
-                                 .AllowAnyHeader()
-                                 .AllowAnyMethod();
-                      });
-            });*/
 
             services.AddCors(options =>
             {

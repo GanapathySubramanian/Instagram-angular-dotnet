@@ -157,7 +157,7 @@ export class PostService {
 
   getAllPosts():Observable<any>{
 
-      return this.http.get( this.baseURL+'WeatherForecasts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
+      return this.http.get( this.baseURL+'Posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
           console.log(data);
 
@@ -236,7 +236,7 @@ export class PostService {
 
 
     homeProfilePosts( userId: string) : Observable<any> {
-      return this.http.get( this.baseURL+'WeatherForecasts' ).pipe(
+      return this.http.get( this.baseURL+'Posts' ).pipe(
         map( (data: any) => {
           let posts: Post[] = [];
           data=data.filter((temp:any)=>temp.postId!=userId)

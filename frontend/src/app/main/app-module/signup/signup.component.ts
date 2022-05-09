@@ -41,6 +41,8 @@ export class SignupComponent implements OnInit {
   onSubmit(){
 
     this.userService.isUser(this.signup.get('username')?.value).subscribe((data)=>{
+      console.log(data);
+      
       if(data){
         this.toasterService.showWarning("User Already Exists","Try Again")
       }else{

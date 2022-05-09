@@ -13,32 +13,32 @@ namespace Instagram.Data
                 Console.WriteLine("Hello this is db initializer");
                 return;
             }
-            var posts = new WeatherForecast[]
+            var posts = new Post[]
             {
-                new WeatherForecast{
+                new Post{
                     link = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1",
                     likeCount = 4,
                     commentCount=7,
                 },
-                new WeatherForecast
+                new Post
                 {
                     link = "https://images.thedirect.com/media/article_full/wandavision-episode-8.jpg",
                     likeCount = 3,
                     commentCount=1,
                 },
-                new WeatherForecast
+                new Post
                 {
                     link = "https://static.toiimg.com/photo/msid-88521380/88521380.jpg",
                     likeCount = 5,
                     commentCount=1,
                 },
-                new WeatherForecast
+                new Post
                 {
                     link = "https://images.thedirect.com/media/article_full/Thumbnails_hAmyT3V.jpg",
                     likeCount = 9,
                     commentCount=10,
                 },
-                new WeatherForecast
+                new Post
                 {
                     link = "https://staticg.sportskeeda.com/editor/2021/11/207ec-16358773930640-1920.jpg",
                     likeCount = 10,
@@ -46,7 +46,7 @@ namespace Instagram.Data
                 },
 
             };
-            foreach (WeatherForecast s in posts)
+            foreach (Post s in posts)
             {
                 context.Posts.Add(s);
             }

@@ -12,48 +12,48 @@ namespace Instagram.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WeatherForecastsController : ControllerBase
+    public class PostsController : ControllerBase
     {
         private readonly PostsContext _context;
 
-        public WeatherForecastsController(PostsContext context)
+        public PostsController(PostsContext context)
         {
             _context = context;
         }
 
-        // GET: api/WeatherForecasts
+        // GET: api/Posts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WeatherForecast>>> GetPosts()
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
             return await _context.Posts.ToListAsync();
         }
 
-        // GET: api/WeatherForecasts/5
+        // GET: api/Posts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<WeatherForecast>> GetWeatherForecast(int id)
+        public async Task<ActionResult<Post>> GetPost(int id)
         {
-            var weatherForecast = await _context.Posts.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
 
-            if (weatherForecast == null)
+            if (post == null)
             {
                 return NotFound();
             }
 
-            return weatherForecast;
+            return post;
         }
 
-        // PUT: api/WeatherForecasts/5
+        // PUT: api/Posts/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWeatherForecast(int id, WeatherForecast weatherForecast)
+        public async Task<IActionResult> PutPost(int id, Post post)
         {
-            if (id != weatherForecast.Id)
+            if (id != post.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(weatherForecast).State = EntityState.Modified;
+            _context.Entry(post).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Instagram.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!WeatherForecastExists(id))
+                if (!PostExists(id))
                 {
                     return NotFound();
                 }
@@ -74,35 +74,35 @@ namespace Instagram.Controllers
             return NoContent();
         }
 
-        // POST: api/WeatherForecasts
+        // POST: api/Posts
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<WeatherForecast>> PostWeatherForecast(WeatherForecast weatherForecast)
+        public async Task<ActionResult<Post>> PostPost(Post post)
         {
-            _context.Posts.Add(weatherForecast);
+            _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWeatherForecast", new { id = weatherForecast.Id }, weatherForecast);
+            return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
-        // DELETE: api/WeatherForecasts/5
+        // DELETE: api/Posts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<WeatherForecast>> DeleteWeatherForecast(int id)
+        public async Task<ActionResult<Post>> DeletePost(int id)
         {
-            var weatherForecast = await _context.Posts.FindAsync(id);
-            if (weatherForecast == null)
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
             {
                 return NotFound();
             }
 
-            _context.Posts.Remove(weatherForecast);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
 
-            return weatherForecast;
+            return post;
         }
 
-        private bool WeatherForecastExists(int id)
+        private bool PostExists(int id)
         {
             return _context.Posts.Any(e => e.Id == id);
         }

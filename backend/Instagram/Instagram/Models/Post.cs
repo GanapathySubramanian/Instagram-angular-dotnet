@@ -2,7 +2,7 @@ using System;
 
 namespace Instagram
 {
-    public class WeatherForecast
+    public class Post
     {
         public int Id { get; set; }
 

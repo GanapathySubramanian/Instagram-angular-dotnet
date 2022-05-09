@@ -42,7 +42,7 @@ export class UserService {
 
   createUser( user: UserForm): Observable<any> {
     user.posts = false;
-    return this.http.post(this.baseURL + 'users.json', user);
+    return this.http.post(this.baseURL + 'Users', user);
   }
 
   isUser( username: string): Observable<any> {

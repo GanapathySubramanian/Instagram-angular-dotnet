@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dotnet\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj": {}
+    "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj": {}
   },
   "projects": {
-    "D:\\Dotnet\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj": {
+    "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dotnet\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
+        "projectUniqueName": "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
         "projectName": "Instagram",
-        "projectPath": "D:\\Dotnet\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
+        "projectPath": "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
         "packagesPath": "C:\\Users\\VC\\.nuget\\packages\\",
-        "outputPath": "D:\\Dotnet\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\obj\\",
+        "outputPath": "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VC\\AppData\\Roaming\\NuGet\\NuGet.Config",

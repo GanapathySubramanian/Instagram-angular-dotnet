@@ -1,2 +1,5 @@
-/bin/*
-/Resources/*
+# /bin/*
+# /Resources/*
+bin/
+obj/
+Resources/

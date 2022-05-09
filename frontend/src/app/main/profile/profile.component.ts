@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
     return url+'#t=2';
   }
 
-  showPost(postId:string){
+  showPost(postId:any){
     console.log("inside show post");
     
     console.log(postId);

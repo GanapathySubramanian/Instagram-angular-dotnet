@@ -134,28 +134,18 @@ export class PostService {
 
 
   viewProfilePosts( userId?: string) : Observable<any> {
-    return this.http.get( this.baseURL+'posts.json' ).pipe(
+
+    
+    return this.http.get( this.baseURL+'posts/user/'+userId ).pipe(
       map( (data: any) => {
-        // console.log(userId);
+        console.log(data);
         
         let posts: PostHover[] = [];
-        Object.keys(data).forEach( key => {
-          let temp: PostHover = {
-            postId: key,
-            link: data[key].url,
-            likeCount: data[key].likes,
-            commentCount: data[key].comments
-          }
-          if( userId) {
-            if(userId === data[key].userId) {
-              console.log(data[key].userId,userId);
-              posts.push(temp);
-            }
-          } else {
-            posts.push(temp);
-          }
-        });
-        return posts;
+          data.forEach((res:any)=>{
+            
+            res.postId=res.id
+          })
+        return data;
       })
     );
   }
@@ -164,22 +154,10 @@ export class PostService {
 
       return this.http.get( this.baseURL+'Posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
-          // console.log(data);
-  
           let posts: PostHover[] = [];
           data.forEach((res:any)=>{
-            // let temp: PostHover = {
-            //       postId: data.id,
-            //       link: data.link,
-            //       likeCount: data.likeCount,
-            //       commentCount: data.commentCount
-            //     }
-            
             res.postId=res.id
-            // posts.push(res);
           })
-          // console.log(posts);
-          
         return data;
         })
       );
@@ -225,15 +203,13 @@ export class PostService {
   showPost(postId: string){
     this.viewpost.next(false);
 
-    this.http.get<Post[]>("assets/static-data/posts.json").subscribe(data => {    
-        this.postURL.next(data.find(post => post.postId === postId)?.link!);
-      })
+    // this.http.get<Post[]>("assets/static-data/posts.json").subscribe(data => {    
+    //     this.postURL.next(data.find(post => post.postId === postId)?.link!);
+    // })
   }
 
   viewPost(postId:string){
     this.viewpost.next(false);
-    // console.log(postId);
-    
     this.postid.next(postId);
   }  
 

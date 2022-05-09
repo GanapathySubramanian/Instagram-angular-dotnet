@@ -48,6 +48,15 @@ namespace Instagram.Controllers
             return post;
         }
 
+        // GET: api/Postsusers
+        [HttpGet("user/{userid}")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetUserPost(int userid)
+        {
+
+            return await _context.Posts.Where(u=>u.user.id==userid).ToListAsync();
+            
+        }
+
         // PUT: api/Posts/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

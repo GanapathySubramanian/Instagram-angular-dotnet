@@ -17,6 +17,7 @@ export class PostItemComponent implements OnInit {
   ngOnInit(): void {
     // if(this.post.liked != undefined)
     console.log(this.post.liked);
+   
 
     this.likeStatus = this.post.liked ? true : false;
 
@@ -26,6 +27,8 @@ export class PostItemComponent implements OnInit {
         this.like = data;
     })
   }
+
+  
 
   @Input() post!: Post;
 

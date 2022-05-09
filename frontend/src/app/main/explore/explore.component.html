@@ -4,7 +4,7 @@
     <div class="grid-container" >
         <span *ngFor="let post of postDetails ; let i = index" [ngClass]="checkFormat(post.link,i+1)">
         <div class="post-container" (click)="showPost(post.postId)"  *ngIf="isImage(post.link) && post.link " > 
-            <img src={{post.link}}  >
+            <img src= {{post.link}}  >
             <div class="blur"></div>
             <div class="info">
                 <div class="like-section">

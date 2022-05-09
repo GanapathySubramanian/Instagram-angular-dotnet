@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+NUHbH2sKgKZnExseMBEkrDMc/bQ3DDJYPF7HEwAsTsfs3Rx7psEJPLuE1SZuQ5igWdwkA5jLOyNw8p0cl3trw==",
+  "dgSpecHash": "ROVMCViU8iv2aiN+aVHkkLMQ8zjaGbBBxscW1kKAlWIJEFi1vJUrXwlu+/kQy8am02rF5glZIR5LdGyQG2/dKw==",
   "success": true,
-  "projectFilePath": "D:\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
+  "projectFilePath": "E:\\.Net\\.Net projs\\Instagram-angular-dotnet\\backend\\Instagram\\Instagram\\Instagram.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

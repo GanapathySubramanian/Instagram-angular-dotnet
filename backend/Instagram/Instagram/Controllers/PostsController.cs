@@ -89,12 +89,19 @@ namespace Instagram.Controllers
             return NoContent();
         }
 
-        // POST: api/Posts
+        // POST: api/Posts/id
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
+        [HttpPost("{id}")]
+  
+        public async Task<ActionResult<Post>> PostPost(int id, Post post)
         {
+            var user = await _context.User.FindAsync(id);
+            post.user = user;
+            Console.WriteLine("user");
+            Console.WriteLine(user.id);
+
+
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 

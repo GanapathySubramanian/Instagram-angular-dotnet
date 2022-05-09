@@ -19,26 +19,26 @@ export class PostComponentComponent implements OnInit {
   posts: Post[] = [];
 
   ngOnInit(): void {
-    this.postservice.homeProfilePosts(this.userService.getAuthUser().id).subscribe(data => {
-      console.log("pp" + data);
-      
+    this.postservice.homeProfilePosts(this.userService.getAuthUser().id).subscribe(data => {    
       this.posts = data;
-      this.posts.forEach((post:Post) => {
-        this.userService.getUserWithId(post.user.id).subscribe( (user) => {
-          post.user.username = user.username;
-          post.profileLink = user.profile;
-          // if(post.likes!=0)
-          // this.postservice.userIsLiked(this.userService.getAuthUser().userId, post.postId).subscribe((like) => {
-          //   if(like!=undefined){
-          //     post.isLiked = true;
-          //     post.liked = like;
-          //   }
-          //   else{
-          //     post.isLiked = false;
-          //   }
-          // })
-        })
-    })
+      console.log(this.posts);
+      
+      // this.posts.forEach((post:Post) => {
+      //   this.userService.getUserWithId(post.user.id).subscribe( (user) => {
+      //     post.user.username = user.username;
+      //     post.profileLink = user.profile;
+      //     // if(post.likes!=0)
+      //     // this.postservice.userIsLiked(this.userService.getAuthUser().userId, post.postId).subscribe((like) => {
+      //     //   if(like!=undefined){
+      //     //     post.isLiked = true;
+      //     //     post.liked = like;
+      //     //   }
+      //     //   else{
+      //     //     post.isLiked = false;
+      //     //   }
+      //     // })
+      //   })
+    // })
   })
   }
 

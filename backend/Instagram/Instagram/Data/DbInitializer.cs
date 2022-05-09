@@ -32,6 +32,7 @@ namespace Instagram.Data
                     link = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1",
                     likeCount = 4,
                     commentCount=7,
+                    caption = "Doctor Strange in the Multiverse of Madness 🔥🔥🔥",
                     user=user[0]
                 },
                 new Post
@@ -39,6 +40,7 @@ namespace Instagram.Data
                     link = "https://images.thedirect.com/media/article_full/wandavision-episode-8.jpg",
                     likeCount = 3,
                     commentCount=1,
+                    caption = "Wanda Vision Series 📺📺📺",
                     user=user[1]
                 },
                 new Post
@@ -46,6 +48,7 @@ namespace Instagram.Data
                     link = "https://static.toiimg.com/photo/msid-88521380/88521380.jpg",
                     likeCount = 5,
                     commentCount=1,
+                    caption="Spiderman Nowayhome 🕷🕷🕷",
                     user=user[0]
                 },
                 new Post
@@ -53,13 +56,15 @@ namespace Instagram.Data
                     link = "https://images.thedirect.com/media/article_full/Thumbnails_hAmyT3V.jpg",
                     likeCount = 9,
                     commentCount=10,
-                    user=user[1]
+                    user=user[1],
+                    caption="What if series ✨✨✨",
                 },
                 new Post
                 {
                     link = "https://staticg.sportskeeda.com/editor/2021/11/207ec-16358773930640-1920.jpg",
                     likeCount = 10,
                     commentCount=0,
+                    caption="Anime 😀😀😀",
                     user=user[0]
                 },
 

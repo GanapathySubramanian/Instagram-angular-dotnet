@@ -8,6 +8,8 @@ namespace Instagram
 
         public string link { get; set; }
 
+        public string caption { get; set; }
+
         public int likeCount { get; set; }
 
         public int commentCount { get; set; }

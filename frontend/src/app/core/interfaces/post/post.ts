@@ -4,7 +4,7 @@ import { User } from "../user/user";
 
 export interface Post {
   postId: string;
-  user:User;
+  user:User
   link: string;
   caption: string;
   timeStamp: string;

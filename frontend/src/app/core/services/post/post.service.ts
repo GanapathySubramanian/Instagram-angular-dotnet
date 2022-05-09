@@ -35,9 +35,9 @@ export class PostService {
   getPost( postId: string): Observable<any> {
     return this.http.get(`${this.baseURL}posts/${postId}`).pipe(
       map((data:any) => {
-        console.log("get post data");
+        // console.log("get post data");
         
-        console.log(data);
+        // console.log(data);
         
         if(data){
           
@@ -82,9 +82,9 @@ export class PostService {
   likePost( like: Like): Observable<any> {
     return this.http.post( this.baseURL + 'likes.json', like).pipe(
       map((data) => {
-        console.log("userid: " + like.userId);
+        // console.log("userid: " + like.userId);
         
-        console.log('post return '+data);
+        // console.log('post return '+data);
         this.getPost(like.postId).subscribe( (data: Post) => {
           this.updateLikeCount(like.postId, data.likes+1).subscribe();
         });
@@ -96,7 +96,7 @@ export class PostService {
   commentPost( comment: Comment): Observable<any> {
     return this.http.post( this.baseURL + 'comments.json', comment).pipe(
       map((data) => {
-        console.log('post return '+data);
+        // console.log('post return '+data);
         this.getPost(comment.postId).subscribe( (data: Post) => {
           this.updateLikeCount(comment.postId, data.comments+1).subscribe();
         });
@@ -118,7 +118,7 @@ export class PostService {
   unlikePost( unlike: Like): Observable<any> {
     return this.http.delete( `${this.baseURL}likes/${unlike.likeId}.json`).pipe(
       map((data) => {
-        console.log('post return '+data);
+        // console.log('post return '+data);
         this.getPost(unlike.postId).subscribe( (data: Post) => {
           this.updateLikeCount(unlike.postId, data.likes-1).subscribe();
         });
@@ -136,7 +136,7 @@ export class PostService {
   viewProfilePosts( userId?: string) : Observable<any> {
     return this.http.get( this.baseURL+'posts.json' ).pipe(
       map( (data: any) => {
-        console.log(userId);
+        // console.log(userId);
         
         let posts: PostHover[] = [];
         Object.keys(data).forEach( key => {
@@ -164,7 +164,7 @@ export class PostService {
 
       return this.http.get( this.baseURL+'Posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
-          console.log(data);
+          // console.log(data);
   
           let posts: PostHover[] = [];
           data.forEach((res:any)=>{
@@ -232,7 +232,7 @@ export class PostService {
 
   viewPost(postId:string){
     this.viewpost.next(false);
-    console.log(postId);
+    // console.log(postId);
     
     this.postid.next(postId);
   }  
@@ -247,20 +247,20 @@ export class PostService {
       return this.http.get( this.baseURL+'Posts' ).pipe(
         map( (data: any) => {
           let posts: Post[] = [];
-          data=data.filter((temp:any)=>temp.postId!=userId)
-          console.log(data);
+          data=data.filter((temp:any)=>temp.user.id!=userId)
+          // console.log(data);
           data.forEach( (post:any) => {
             let temp: Post = {
-              postId: post.postId,
+              postId: post.id,
               user: post.user,
               link: post.link,
-              caption: data.caption,
-              timeStamp:data.timeStamp,
-              likes: data.likeCount,
-              comments: data.commentCount,
+              caption: post.caption,
+              timeStamp:'',
+              likes: post.likeCount,
+              comments: post.commentCount,
               profileLink: post.link
             }
-            // if(userId !== data[key].userId) {
+            // if(userId !== data.user.id) {
                 posts.push(temp);
             // }
           });

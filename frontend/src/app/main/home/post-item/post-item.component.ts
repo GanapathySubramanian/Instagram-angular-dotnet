@@ -38,6 +38,8 @@ export class PostItemComponent implements OnInit {
   }
 
 
+
+
   isImage(url: string) {
     return this.postService.isImage(url);
   }

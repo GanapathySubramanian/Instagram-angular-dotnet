@@ -70,7 +70,7 @@ namespace Instagram.Data
                 },
 
             };
-            foreach (Post s in posts)
+           /* foreach (Post s in posts)
             {
                 context.Posts.Add(s);
             }
@@ -79,7 +79,7 @@ namespace Instagram.Data
             {
                 context.User.Add(c);
             }
-            context.SaveChanges();
+            context.SaveChanges();*/
 
         }
     }

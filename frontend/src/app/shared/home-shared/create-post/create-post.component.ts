@@ -179,7 +179,6 @@ export class CreatePostComponent implements OnInit {
 
                   this.postService.createPost(this.authenticatedUser, this.caption,event.body? event.body:'').subscribe({
                     next: (data) => {
-                          
                       this.caption='';
                       this.isdisableShare=false;
                       this.disableupload=true;

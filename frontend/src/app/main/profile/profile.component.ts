@@ -36,7 +36,10 @@ export class ProfileComponent implements OnInit {
     this.getUser();
     this.userService.$authUser.subscribe((data) => {
       this.authenticatedUser = data;
-     
+    })
+    this.postservice.$profilepost.subscribe((data)=>{
+      this.postDetails=data.reverse();
+      console.log(data);  
     })
   }
 
@@ -52,6 +55,8 @@ export class ProfileComponent implements OnInit {
   loadThumbnail(url:string){
     return url+'#t=2';
   }
+
+
 
   showPost(postId:any){
     console.log("inside show post");
@@ -70,11 +75,9 @@ export class ProfileComponent implements OnInit {
       this.authenticatedUser.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
     }
     this.postservice.viewProfilePosts(this.authenticatedUser.id).subscribe((data)=>{
-       this.postDetails=data.reverse();
+       this.postDetails=data;
        console.log(this.postDetails);
-       
     })
-    
   }
 
   

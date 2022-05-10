@@ -35,11 +35,14 @@ export class ViewPostComponent implements OnInit {
 
   constructor(private postservice:PostService, private userService: UserService) {
     this.viewPost();
-    console.log("constructor of view post");
-    
-    
-    
+    console.log("constructor of view post"); 
   }
+
+  deletePost(postId:string,userId:string){
+    this.postservice.deletePostById(postId,userId);
+    this.ispostoption=false;
+  }
+
   getPost(postId: string) {
     console.log("getpost");
     console.log(postId);

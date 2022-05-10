@@ -89,7 +89,10 @@ namespace Instagram.Controllers
             return NoContent();
         }
 
-        // POST: api/Posts/id
+   
+
+        // POST: api/Posts
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost("{id}")]

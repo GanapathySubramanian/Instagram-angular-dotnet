@@ -123,6 +123,26 @@
                       </div>
                   </div>
 
+                  <div class="comment-container" *ngFor="let c of comments">
+                    <div class="user-img">
+                      <img src="{{c.profile}}" > 
+                    </div>
+                    <div class="other-content">
+                      <span class="username">{{c.username}}</span>
+                      <span class="comment">{{c.text}}</span>
+                      <p class="tlr">
+                        <span>1d</span>
+                        <span>15 likes</span>
+                        <span>Reply</span>
+                      </p>
+                    </div>
+                    <div class="heart">
+                      <i class="fa-regular fa-heart"></i>
+                    </div>
+                </div>
+
+
+
 
       
               </div>
@@ -195,7 +215,7 @@
         <div id="option-section">
 
             <div class="option-conatiner" [ngStyle]="{'display':isUser()? 'block':'none'}">
-                  <div class="option-main" >
+                  <div class="option-main" (click)="deletePost(post.postId,post.user.id)">
                     <a>Delete</a>
                   </div>
                   <div class="option-other" >

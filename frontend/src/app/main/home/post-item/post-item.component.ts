@@ -14,13 +14,22 @@ export class PostItemComponent implements OnInit {
   likeStatus: boolean = false;
   like: Like = {} as Like;
 
+  
+  @Input() post!: Post;
+
+  ispostoption: boolean = false;
+
+  isdisablePause: boolean = false;
+
   ngOnInit(): void {
     // if(this.post.liked != undefined)
-    console.log(this.post.liked);
-   
 
     this.likeStatus = this.post.liked ? true : false;
 
+    console.log("post");
+    
+    console.log(this.post.postId);
+    
     this.postService.userIsLiked(this.userService.getAuthUser().id, this.post.postId).subscribe((data) => {
       this.likeStatus = data ? true : false;
       if (this.likeStatus)
@@ -28,13 +37,8 @@ export class PostItemComponent implements OnInit {
     })
   }
 
-  
 
-  @Input() post!: Post;
 
-  ispostoption: boolean = false;
-
-  isdisablePause: boolean = false;
 
   isImage(url: string) {
     return this.postService.isImage(url);
@@ -60,26 +64,21 @@ export class PostItemComponent implements OnInit {
   togglePlay() {
     if (this.isdisablePause) {
       this.isdisablePause = false;
-      console.log(this.isdisablePause);
     } else if (this.isdisablePause == false) {
       this.isdisablePause = true;
-      console.log(this.isdisablePause);
+     
     }
   }
 
 
   changeLikeStatus() {
     if (this.likeStatus) {
-      console.log("unlike");
-      
       if (this.like != undefined) {
         this.postService.unlikePost(this.like).subscribe((data) => {
-          console.log("unliked");
-          
           this.likeStatus = false;
           this.post.likes -= 1;
         },
-        (error)=>{console.log("unlike err"+error);
+        (error)=>{console.log(error);
         }
         );
       }
@@ -91,13 +90,12 @@ export class PostItemComponent implements OnInit {
         postId: this.post.postId,
         timeStamp: new Date()
       }).subscribe((data) => {
+        this.like=data;
         this.likeStatus = true;
         this.post.likes += 1;
       });
 
       this.postService.userIsLiked(this.userService.getAuthUser().id, this.post.postId).subscribe((data) => {
-        console.log("like status: " + data);
-
         // this.likeStatus = data.liked ? true : false;
         this.likeStatus = data ? true : false;
         if (this.likeStatus)

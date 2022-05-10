@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/core/interfaces/post/post';
 import { Comment } from 'src/app/core/interfaces/react/comment';
 import { Like } from 'src/app/core/interfaces/react/like';
+import { User } from 'src/app/core/interfaces/user/user';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
@@ -15,7 +16,7 @@ export class ViewPostComponent implements OnInit {
   post:Post={} as Post;
   comments:Comment[]=[];
 
-
+  postComment:string='';
 
   postId:string='';
 
@@ -43,6 +44,22 @@ export class ViewPostComponent implements OnInit {
     this.ispostoption=false;
   }
 
+
+  addComment(postId:string){
+    let commentData:Comment={} as Comment;
+    commentData.postId=postId;
+    commentData.userId=this.userService.getAuthUser().id;
+    commentData.profile=this.userService.getAuthUser().profile;
+    commentData.text=this.postComment;
+    commentData.username=this.userService.getAuthUser().username;
+    this.postservice.commentPost(commentData).subscribe((data)=>{
+      this.postComment='';
+      this.postservice.getPostComments(data.postId).subscribe((res)=>{
+        this.comments=res;
+      })
+    });
+  }
+  
   getPost(postId: string) {
     console.log("getpost");
     console.log(postId);
@@ -86,7 +103,6 @@ export class ViewPostComponent implements OnInit {
     
     this.postservice.getPostComments(this.postId).subscribe((data)=>{
       this.comments=data;
-      
     })
   }
 

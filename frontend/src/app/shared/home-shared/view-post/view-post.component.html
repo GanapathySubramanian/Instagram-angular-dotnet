@@ -33,23 +33,42 @@
                     </p>
                     <p style="cursor: pointer;"class="flex-dot" (click)="postOptions()">...</p>
                  </div>
-                 <div class="comments">
-                      
-                          <div class="comment-container">
-                              <div class="user-img">
-                                <img src={{checkProfileUrl(post.user.profile)}} > 
-                              </div>
-                              <div class="other-content">
-                                <span class="username">{{post.user?.username}}</span>
-                                <span class="comment">{{post.caption}}</span>
-                                <p class="tlr">
-                                  <span>1d</span>
-                                  
-                                </p>
-                              </div>
-                             
-                          </div>
+                  <div class="comments">
+                    
+                    <div class="comment-container">
+                      <div class="user-img">
+                        <img src={{checkProfileUrl(post.user.profile)}} > 
+                      </div>
+                      <div class="other-content">
+                        <span class="username">{{post.user?.username}}</span>
+                        <span class="comment">{{post.caption}}</span>
+                        <p class="tlr">
+                          <span>1d</span>
+                          
+                        </p>
+                      </div>
+                     
+                  </div>
 
+                      <div class="comment-container" *ngFor="let c of comments">
+                        <div class="user-img">
+                          <img src="{{c.profile}}" > 
+                        </div>
+                        <div class="other-content">
+                          <span class="username">{{c.username}}</span>
+                          <span class="comment">{{c.text}}</span>
+                          <p class="tlr">
+                            <span>1d</span>
+                            <span>15 likes</span>
+                            <span>Reply</span>
+                          </p>
+                        </div>
+                        <div class="heart">
+                          <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+
+                         
                           <div class="comment-container">
                             <div class="user-img">
                               <img src="https://imageio.forbes.com/blogs-images/jvchamary/files/2016/03/man_of_steel-1200x800.jpg?fit=bounds&format=jpg&width=960" > 
@@ -123,24 +142,7 @@
                       </div>
                   </div>
 
-                  <div class="comment-container" *ngFor="let c of comments">
-                    <div class="user-img">
-                      <img src="{{c.profile}}" > 
-                    </div>
-                    <div class="other-content">
-                      <span class="username">{{c.username}}</span>
-                      <span class="comment">{{c.text}}</span>
-                      <p class="tlr">
-                        <span>1d</span>
-                        <span>15 likes</span>
-                        <span>Reply</span>
-                      </p>
-                    </div>
-                    <div class="heart">
-                      <i class="fa-regular fa-heart"></i>
-                    </div>
-                </div>
-
+                
 
 
 
@@ -195,8 +197,8 @@
 
               <div class="footer">
                   <div class="smilie-align"><span><svg aria-label="Emoji" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path></svg></span></div>
-                  <input type="text" placeholder="Add a comment...">
-                  <a>Post</a>
+                  <input type="text" placeholder="Add a comment..." [(ngModel)]="postComment">
+                  <a (click)="addComment(post.postId)">Post</a>
               </div>
           </div>
       </div>  

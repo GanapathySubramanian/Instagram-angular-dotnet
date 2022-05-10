@@ -80,6 +80,7 @@ namespace Instagram.Data
                 context.User.Add(c);
             }
             context.SaveChanges();
+
         }
     }
 }

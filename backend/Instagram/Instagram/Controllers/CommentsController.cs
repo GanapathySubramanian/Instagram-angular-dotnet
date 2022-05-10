@@ -83,6 +83,18 @@ namespace Instagram.Controllers
             _context.Comment.Add(comment);
             await _context.SaveChangesAsync();
 
+
+            var dbpost = _context.Posts.Where(x => x.Id == comment.postId).FirstOrDefault();
+            dbpost.commentCount += 1;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
+
             return CreatedAtAction("GetComment", new { id = comment.commentId }, comment);
         }
 

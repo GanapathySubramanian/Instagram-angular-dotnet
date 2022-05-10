@@ -8,6 +8,7 @@ import {finalize, map} from "rxjs/operators";
 import {Like} from "../../interfaces/react/like";
 import {PostHover} from "../../interfaces/profile/post-hover";
 import {Post} from "../../interfaces/post/post";
+import { User } from '../../interfaces/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -50,15 +51,15 @@ export class PostService {
       map((data: any) => {
         if(data){
             let comments: Comment[] = [];
-            Object.keys(data).forEach( key => {
-              if( postId === data.postId) {
+            data.forEach((res:any) => {
+              if( postId === res.postId) {
                 let temp: Comment = {
-                  commentId: data.commentId,
-                  userId: data.userId,
-                  postId: data.postId,
-                  profile:data.profile,
-                  text: data.text,
-                  username: data.username,
+                  commentId: res.commentId,
+                  userId: res.userId,
+                  postId: res.postId,
+                  profile:res.profile,
+                  text: res.text,
+                  username: res.username,
                   timeStamp: ''
                 }
                 comments.push(temp);
@@ -91,13 +92,13 @@ export class PostService {
     );
   }
 
-  commentPost( comment: Comment): Observable<any> {
+  commentPost(comment:Comment): Observable<any> {
     return this.http.post( this.baseURL + 'comments', comment).pipe(
       map((data) => {
-        this.getPost(comment.postId).subscribe( (data: Post) => {
-          this.updateLikeCount(comment.postId, data.comments+1).subscribe();
-        });
-        return true;
+        // this.getPost(comment.postId).subscribe( (data: Post) => {
+        //   this.updateLikeCount(comment.postId, data.comments+1).subscribe();
+        // });
+        return data;
       })
     );
   }
@@ -256,6 +257,8 @@ export class PostService {
               comments: post.commentCount,
               profileLink: post.link
             }
+
+
             // if(userId !== data.user.id) {
                 posts.push(temp);
             // }

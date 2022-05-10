@@ -3,6 +3,8 @@ import { Post } from 'src/app/core/interfaces/post/post';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Like } from 'src/app/core/interfaces/react/like';
+import { User } from 'src/app/core/interfaces/user/user';
+import { Comment } from 'src/app/core/interfaces/react/comment';
 @Component({
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
@@ -10,10 +12,14 @@ import { Like } from 'src/app/core/interfaces/react/like';
 })
 export class PostItemComponent implements OnInit {
 
-  constructor(private postService: PostService, private userService: UserService) { }
+  constructor(private postService: PostService, private userService: UserService) { 
+    console.log(this.postComment);
+    
+  }
   likeStatus: boolean = false;
   like: Like = {} as Like;
 
+  postComment:string='';
   
   @Input() post!: Post;
 
@@ -23,7 +29,6 @@ export class PostItemComponent implements OnInit {
 
   ngOnInit(): void {
     // if(this.post.liked != undefined)
-
     this.likeStatus = this.post.liked ? true : false;
 
     console.log("post");
@@ -68,7 +73,17 @@ export class PostItemComponent implements OnInit {
     }
   }
 
-
+  addComment(postId:string){
+    let commentData:Comment={} as Comment;
+    commentData.postId=postId;
+    commentData.userId=this.userService.getAuthUser().id;
+    commentData.profile=this.userService.getAuthUser().profile;
+    commentData.text=this.postComment;
+    commentData.username=this.userService.getAuthUser().username;
+    this.postService.commentPost(commentData).subscribe((data)=>{
+      this.postComment='';
+    });
+  }
   changeLikeStatus() {
     if (this.likeStatus) {
       if (this.like != undefined) {

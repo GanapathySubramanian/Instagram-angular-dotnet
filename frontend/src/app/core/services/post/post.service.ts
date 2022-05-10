@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {PostForm} from "../../interfaces/post/post-form";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpEventType, HttpHeaders} from "@angular/common/http";
 import {FileUploadService} from "../media/file-upload.service";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import { Comment } from "../../interfaces/react/comment";
@@ -32,6 +32,8 @@ export class PostService {
   $profilepost = this.profilepost.asObservable();
 
   private baseURL: string = 'https://localhost:5001/api/'
+  private backendURL: string = 'https://localhost:5001/'
+  
 
   constructor( private http: HttpClient) { }
 
@@ -39,6 +41,11 @@ export class PostService {
     return this.http.get(`${this.baseURL}posts/${postId}`).pipe(
       map((data:any) => {
         if(data){
+
+          
+          data.link = this.backendURL + data.link;
+
+
           data.postId = data.id;
           return data;
         }
@@ -72,10 +79,26 @@ export class PostService {
     );
   }
 
-  createPost( post: PostForm): Observable<any> {
-    post.likes = 0;
-    post.comments = 0;
-    return this.http.post(this.baseURL + 'posts', post);
+
+  // Upload Post img to .Net Server
+  uploadPost(file: File, userId: string, caption: string) {
+
+    const formData = new FormData(); 
+    formData.append('file', file, userId+file.name);
+    console.log("");
+
+    return this.http.post(`${this.baseURL}PostUpload`, formData, {reportProgress: true, observe: 'events', responseType: 'text'});
+
+  }
+
+  createPost(user: User, caption: string, url: string): Observable<any> {
+    
+    console.log("post create:");
+    console.log(user.id);
+    // post.likes = 0;
+    // post.comments = 0;
+    return this.http.post(this.baseURL + 'posts/' + user.id, {link: url, caption: caption, userid: user.id});
+
   }
 
   likePost( like: Like): Observable<any> {
@@ -140,6 +163,10 @@ export class PostService {
         console.log(data);
         
           data.forEach((res:any)=>{
+
+            res.link = this.backendURL + res.link;
+
+
             res.postId=res.id
           })
           this.profilepost.next(data);
@@ -156,6 +183,7 @@ export class PostService {
           let posts: PostHover[] = [];
           data.forEach((res:any)=>{
             res.postId=res.id
+            res.link = this.backendURL + res.link;
           })
         return data;
         })
@@ -235,7 +263,8 @@ export class PostService {
   }  
 
     isImage(url: string) {
-      url = url?.split('?')[0];
+
+      // url = url.split('?')[0];
       return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
     }
 
@@ -250,7 +279,8 @@ export class PostService {
             let temp: Post = {
               postId: post.id,
               user: post.user,
-              link: post.link,
+              // link: post.link,
+              link: this.backendURL + post.link,
               caption: post.caption,
               timeStamp:'',
               likes: post.likeCount,

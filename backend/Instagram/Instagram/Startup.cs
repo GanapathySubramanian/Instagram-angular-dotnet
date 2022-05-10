@@ -12,6 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Instagram.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Instagram
 {
@@ -67,8 +70,17 @@ namespace Instagram
                 endpoints.MapControllers();
             });
 
-    
-           
+            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
+
+
+
+
         }
     }
 }

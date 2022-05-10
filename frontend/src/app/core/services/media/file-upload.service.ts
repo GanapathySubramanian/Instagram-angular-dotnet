@@ -26,12 +26,12 @@ export class FileUploadService {
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
-        storageRef.getDownloadURL().subscribe(downloadURL => {
-          if( type === 'profile') this.userService.uploadProfilePic( userId, downloadURL).subscribe(res=>{
-            this.userService.updateProfile(this.userService.getAuthUser().id);
-          });
-          else if( type === 'post' && caption) this.postService.createPost({userId,caption, link: downloadURL, timeStamp: new Date() }).subscribe();
-        });
+        // storageRef.getDownloadURL().subscribe(downloadURL => {
+        //   if( type === 'profile') this.userService.uploadProfilePic( userId, downloadURL).subscribe(res=>{
+        //     this.userService.updateProfile(this.userService.getAuthUser().id);
+        //   });
+        //   else if( type === 'post' && caption) this.postService.createPost({userId,caption, link: downloadURL, timeStamp: new Date() }).subscribe();
+        // });
       })
     ).subscribe();
     return uploadTask.percentageChanges();

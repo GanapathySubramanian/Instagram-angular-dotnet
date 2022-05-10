@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/interfaces/user/user';
 import { FileUpload } from 'src/app/core/models/file-upload';
@@ -45,7 +46,7 @@ export class CreatePostComponent implements OnInit {
 
 
     
-    constructor(private postservice:PostService,private userService:UserService,private uploadService: FileUploadService,private toaster:ToastNotificationService) {
+    constructor(private postservice:PostService,private userService:UserService,private postService: PostService,private toaster:ToastNotificationService) {
       this.displaypost(); 
       this.userService.$authUser.subscribe((data) => {
         this.authenticatedUser = data;
@@ -165,30 +166,64 @@ export class CreatePostComponent implements OnInit {
         const file: File | null = this.selectedFiles.item(0);
         this.selectedFiles = undefined;
         if (file) {
-          this.currentFileUpload = new FileUpload(file);
+          // this.currentFileUpload = new FileUpload(file);
           let count=0;
-          this.uploadService.pushFileToStorage(this.currentFileUpload,this.authenticatedUser.id,'post',this.caption).subscribe(
-            percentage => {
-              // this.toaster.showPending('Post is uploading wait','info')
-              this.percentage = Math.round(percentage ? percentage : 0);
-              this.isdisableShare=true;
-              if(this.percentage==100){       
-                this.caption='';
-                this.isdisableShare=false;
-                this.disableupload=true;
+          this.postService.uploadPost(file, this.authenticatedUser.id, this.caption).subscribe({
+              next: (event) => {
+              if (event.type === HttpEventType.UploadProgress && event.total)
+                this.percentage = Math.round(100 * event.loaded / event.total);
+              else if (event.type === HttpEventType.Response) {
                 if(count===0){
-                  this.toaster.showSuccess('Post uploaded successfully','success')
-                  count=1;
+
+                  console.log(event.body);
+
+                  this.postService.createPost(this.authenticatedUser, this.caption,event.body? event.body:'').subscribe({
+                    next: (data) => {
+                          
+                      this.caption='';
+                      this.isdisableShare=false;
+                      this.disableupload=true;
+                      this.toaster.showSuccess('Post uploaded successfully','success')
+                      count=1;
+                    },
+                    error: (e) => {
+                      console.log("error in create post");        
+                    },
+                    complete: () => {
+                    }
+                })
+                  
+                 
                 }
               }
             },
-            error => {
-              console.log(error);
-              this.toaster.showError('Post upload Failed','error')
-            }
-          );
+            error: (err: HttpErrorResponse) => console.log(err)
+          });
         }
       }
     }
+          // this.uploadService.pushFileToStorage(this.currentFileUpload,this.authenticatedUser.id,'post',this.caption).subscribe(
+          //   percentage => {
+          //     // this.toaster.showPending('Post is uploading wait','info')
+          //     this.percentage = Math.round(percentage ? percentage : 0);
+          //     this.isdisableShare=true;
+          //     if(this.percentage==100){       
+          //       this.caption='';
+          //       this.isdisableShare=false;
+          //       this.disableupload=true;
+          //       if(count===0){
+          //         this.toaster.showSuccess('Post uploaded successfully','success')
+          //         count=1;
+          //       }
+          //     }
+          //   },
+          //   error => {
+          //     console.log(error);
+          //     this.toaster.showError('Post upload Failed','error')
+          //   }
+          // );
+        // }
+    //   }
+    // }
 
 }

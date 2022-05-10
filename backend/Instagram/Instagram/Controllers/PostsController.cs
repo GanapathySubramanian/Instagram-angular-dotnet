@@ -89,48 +89,22 @@ namespace Instagram.Controllers
             return NoContent();
         }
 
-
-
-        // PATCH: api/Posts/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchPost(int id, Post post)
-        {
-
-            Console.WriteLine("Hello Hi");
-            var dbpost =_context.Posts.Include(x => x.user).Where(x => x.Id == id).FirstOrDefault();
-            dbpost.likeCount= post.likeCount;
-           
-            Console.Write(dbpost.likeCount);
-            _context.Entry(dbpost).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
+   
 
         // POST: api/Posts
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
+        [HttpPost("{id}")]
+  
+        public async Task<ActionResult<Post>> PostPost(int id, Post post)
         {
+            var user = await _context.User.FindAsync(id);
+            post.user = user;
+            Console.WriteLine("user");
+            Console.WriteLine(user.id);
+
+
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 

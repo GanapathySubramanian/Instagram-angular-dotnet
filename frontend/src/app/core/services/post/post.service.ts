@@ -51,14 +51,15 @@ export class PostService {
         if(data){
             let comments: Comment[] = [];
             Object.keys(data).forEach( key => {
-              if( postId === data[key].postId) {
+              if( postId === data.postId) {
                 let temp: Comment = {
-                  commentId: key,
-                  userId: data[key].userId,
-                  postId: data[key].postId,
-                  text: data[key].text,
-                  username: data[key].username,
-                  timeStamp: data[key].timeStamp
+                  commentId: data.commentId,
+                  userId: data.userId,
+                  postId: data.postId,
+                  profile:data.profile,
+                  text: data.text,
+                  username: data.username,
+                  timeStamp: ''
                 }
                 comments.push(temp);
               }
@@ -80,10 +81,12 @@ export class PostService {
 
     return this.http.post( this.baseURL + 'Likes', like).pipe(
       map((data) => {
-        this.getPost(like.postId).subscribe( (data: Post) => {
-          this.updateLikeCount(like.postId, data.likes+1).subscribe();
-        });
-        return true;
+        console.log(data);
+        
+        // this.getPost(like.postId).subscribe( (data: Post) => {
+        //   this.updateLikeCount(like.postId, data.likes+1).subscribe();
+        // });
+        return data;
     })
     );
   }
@@ -115,9 +118,9 @@ export class PostService {
     return this.http.delete( `${this.baseURL}Likes/${unlike.likeId}`).pipe(
       map((data) => {
         // console.log('post return '+data);
-        this.getPost(unlike.postId).subscribe( (data: Post) => {
-          this.updateLikeCount(unlike.postId, data.likes-1).subscribe();
-        });
+        // this.getPost(unlike.postId).subscribe( (data: Post) => {
+        //   this.updateLikeCount(unlike.postId, data.likes-1).subscribe();
+        // });
         return true;
       })
     );

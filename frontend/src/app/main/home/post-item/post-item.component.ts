@@ -88,6 +88,7 @@ export class PostItemComponent implements OnInit {
         postId: this.post.postId,
         timeStamp: new Date()
       }).subscribe((data) => {
+        this.like=data;
         this.likeStatus = true;
         this.post.likes += 1;
       });

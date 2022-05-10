@@ -80,8 +80,20 @@ namespace Instagram.Controllers
         [HttpPost]
         public async Task<ActionResult<Like>> PostLike(Like like)
         {
+
             _context.Like.Add(like);
             await _context.SaveChangesAsync();
+
+            var dbpost = _context.Posts.Where(x => x.Id == like.postId).FirstOrDefault();
+            dbpost.likeCount +=1;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
 
             return CreatedAtAction("GetLike", new { id = like.likeId }, like);
         }
@@ -98,6 +110,17 @@ namespace Instagram.Controllers
 
             _context.Like.Remove(like);
             await _context.SaveChangesAsync();
+
+            var dbpost = _context.Posts.Where(x => x.Id == like.postId).FirstOrDefault();
+            dbpost.likeCount -= 1;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
 
             return like;
         }

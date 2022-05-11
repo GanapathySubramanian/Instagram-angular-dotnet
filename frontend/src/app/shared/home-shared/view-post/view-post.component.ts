@@ -45,11 +45,13 @@ export class ViewPostComponent implements OnInit {
   }
 
   addComment(postId:string){
+  if(this.postComment.length>1){
     let commentData:Comment={} as Comment;
     commentData.postId=postId;
     commentData.userId=this.userService.getAuthUser().id;
     commentData.profile=this.userService.getAuthUser().profile;
     commentData.text=this.postComment;
+  
     commentData.username=this.userService.getAuthUser().username;
     this.postservice.commentPost(commentData).subscribe((data)=>{
       this.postComment='';
@@ -63,6 +65,8 @@ export class ViewPostComponent implements OnInit {
         // })
       })
     });
+  }
+   
   }
   
   getPost(postId: string) {
@@ -126,15 +130,11 @@ export class ViewPostComponent implements OnInit {
   ngOnInit(): void {
     this.isdisablepostview=true;
     this.checkFormat();    
-
-
     this.postservice.$postid.subscribe((data)=>{
       this.postId=data
       
       this.getPost(this.postId);  
     })
-   
-    
   }
 
 

@@ -76,6 +76,7 @@ export class PostItemComponent implements OnInit {
   }
 
   addComment(postId:string){
+    if(this.postComment.length>1){
     let commentData:Comment={} as Comment;
     commentData.postId=postId;
     commentData.userId=this.userService.getAuthUser().id;
@@ -85,6 +86,7 @@ export class PostItemComponent implements OnInit {
     this.postService.commentPost(commentData).subscribe((data)=>{
       this.postComment='';
     });
+  }
   }
   changeLikeStatus() {
     if (this.likeStatus) {

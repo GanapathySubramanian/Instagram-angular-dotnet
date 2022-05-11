@@ -24,6 +24,7 @@ export class PostItemComponent implements OnInit {
   @Input() post!: Post;
 
   ispostoption: boolean = false;
+  isEmojiPickerVisible: boolean=false;
 
   isdisablePause: boolean = false;
 
@@ -85,8 +86,14 @@ export class PostItemComponent implements OnInit {
     commentData.username=this.userService.getAuthUser().username;
     this.postService.commentPost(commentData).subscribe((data)=>{
       this.postComment='';
+      this.isEmojiPickerVisible=false;
+
     });
   }
+  }
+
+  public addEmoji(event:any) {
+     this.postComment= `${this.postComment}${event.emoji.native}`;
   }
   changeLikeStatus() {
     if (this.likeStatus) {

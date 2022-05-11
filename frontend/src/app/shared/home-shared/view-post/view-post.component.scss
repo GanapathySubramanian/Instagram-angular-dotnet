@@ -10,7 +10,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #252525;
+    background-color:rgba(0,0,0,0.5);
     z-index: 9999;
     cursor: default;
     overflow-y: scroll;
@@ -55,7 +55,12 @@
   align-items: center;
 }
 
-
+.emoji-mart{
+  position: absolute;
+  z-index: 99999;
+  margin-left: 750px;
+  margin-top: 125px;
+}
 .close-overlay{
   position: absolute;
   top:10px;
@@ -366,9 +371,16 @@
       -ms-transform: translate(-50%,-50%);
       cursor:default;
       border-radius: 0px 4px 4px 0px;
-      overflow: hidden;
+      // overflow: hidden;
     }
 
+    
+    .emoji-mart{
+      position: absolute;
+      z-index: 99999;
+      margin-left: 210px;
+      margin-top: 583px;
+    }
     .postview-post-container {
       float: center;
       width:100%;
@@ -523,7 +535,7 @@
 .row-container{
   display:flex;
   flex-direction: row;
-  overflow:hidden;
+  // overflow:hidden;
   align-items: center;
   align-content: center;
 }

@@ -65,7 +65,9 @@
                         </div>
                 
                         <div class="emoji-section">
-                            <p class="emoji"><i class="fa-regular fa-face-smile"></i></p>
+                            <p class="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;"><i class="fa-regular fa-face-smile"></i></p>
+                            <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
+
                             <span class="comment-length">{{length}}<span>/2,200</span></span>
                         </div>
                 

@@ -1,4 +1,5 @@
 <div class="post-card" *ngIf="post.user">
+
     <div class="card-header-section row-container">
         <div class="page-dp">
             <div class="gradient-background">
@@ -21,6 +22,7 @@
         </video>
             
     </div>
+
     <div class="interaction-section row-container sp-bw-comp">
         <div class="like-comment-section row-container">
             <!-- <i class="fa-solid fa-heart" [ngClass]="likeStatus" (click)="changeLikeStatus()"></i> -->
@@ -37,6 +39,7 @@
             <svg aria-label="Save" class="_8-yf5 icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg>
         </div>
     </div>
+
     <div class="liked-by-section row-container small">
         <img src="https://qph.fs.quoracdn.net/main-qimg-c08442f3d73a6e6b33f7ea892ce16f21-lq" alt="">
         <div class="img-stack-section "></div>
@@ -54,14 +57,17 @@
     <div class="time-section">
         {{post.timeStamp | uppercase}}
     </div>
+
     <div class="add-comment-section row-container">
         <div class="smiley">
-            <svg aria-label="Emoji" class="_8-yf5 icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path></svg>
+            <svg (click)="isEmojiPickerVisible = !isEmojiPickerVisible;" aria-label="Emoji" class="_8-yf5 icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path></svg>
         </div>
         <input type="text" placeholder="Add a comment..." [(ngModel)]="postComment">
         <button id="post-button" placeholder="Add a comment" (click)="addComment(post.postId)">Post</button>
     </div>
 </div>
+<emoji-mart color="#ae65c5"class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
+
 
 <div id="overlay-option" style="background-color: rgb(0,0,0,0,5);" class="overlay" [ngStyle]="{'display': ispostoption ? 'block' : 'none' }">
 

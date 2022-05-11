@@ -9,7 +9,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { StoryViewComponent } from './main/story-view/story-view.component';
 import { MessagesComponent } from './main/messages/messages.component';
 import { PostItemComponent } from './main/home/post-item/post-item.component';
-
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @NgModule({
   declarations: [
@@ -63,9 +62,11 @@ import { PostItemComponent } from './main/home/post-item/post-item.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({preventDuplicates:true})
+    ToastrModule.forRoot({preventDuplicates:true}),
+    PickerModule,
   ],
   providers: [],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

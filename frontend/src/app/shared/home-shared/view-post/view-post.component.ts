@@ -17,6 +17,7 @@ export class ViewPostComponent implements OnInit {
   comments:Comment[]=[];
 
   postComment:string='';
+  isEmojiPickerVisible: boolean=false;
 
   postId:string='';
 
@@ -57,7 +58,7 @@ export class ViewPostComponent implements OnInit {
       this.postComment='';
       this.postservice.getPostComments(data.postId).subscribe((res)=>{
         this.comments=res;
-
+        this.isEmojiPickerVisible=false;
         // this.comments.forEach((data)=>{
         //   if(!data.profile){
         //     data.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
@@ -174,8 +175,8 @@ export class ViewPostComponent implements OnInit {
       this.pauseVideo('pause');
       this.isdisablePause=false;
       this.isdisablepostview=true;
+      this.isEmojiPickerVisible = false;
     }
-
   }
     togglePlay(){
      if(this.isdisablePause){
@@ -193,6 +194,7 @@ export class ViewPostComponent implements OnInit {
 
   closeOption(){
     this.ispostoption=false;
+    this.isEmojiPickerVisible = false;
   }
 
   pauseVideo = function (s:string) {
@@ -219,9 +221,14 @@ export class ViewPostComponent implements OnInit {
   }
 
 
+  
   likeStatus: boolean = false;
   like: Like = {} as Like;
 
+
+  public addEmoji(event:any) {
+     this.postComment= `${this.postComment}${event.emoji.native}`;
+  }
   changeLikeStatus() {
     
     if (this.likeStatus) {

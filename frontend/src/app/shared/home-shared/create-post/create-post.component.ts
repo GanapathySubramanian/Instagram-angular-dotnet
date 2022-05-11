@@ -32,6 +32,12 @@ export class CreatePostComponent implements OnInit {
   currentFileUpload?: FileUpload;
   percentage = 0;
 
+ isEmojiPickerVisible: boolean=false;
+
+  public addEmoji(event:any) {
+     this.caption= `${this.caption}${event.emoji.native}`;
+  }
+  
   ngOnInit(): void {
     this.disableupload=true;
     this.disablechoose=true;
@@ -94,6 +100,7 @@ export class CreatePostComponent implements OnInit {
       this.pauseVideo('pause')
       this.disableupload=false;
       this.isdiscard=true;
+      this.isEmojiPickerVisible = false;
     }
 
     discardAll(){
@@ -103,12 +110,14 @@ export class CreatePostComponent implements OnInit {
       this.caption='';
       this.isaccess=false;
       this.isadvance=false;
+      this.isEmojiPickerVisible = false;
     }
     
     closeDiscard(){
       // this.pauseVideo('play')
       this.isdiscard=false;
       this.disableupload=false;
+       this.isEmojiPickerVisible = false;
      }
     
     openChoose(){
@@ -186,6 +195,7 @@ export class CreatePostComponent implements OnInit {
                       this.caption='';
                       this.isdisableShare=false;
                       this.disableupload=true;
+                      this.isEmojiPickerVisible=false;
                       this.toaster.showSuccess('Post uploaded successfully','success')
                       count=1;
                     },

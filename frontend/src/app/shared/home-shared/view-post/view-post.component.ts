@@ -44,7 +44,6 @@ export class ViewPostComponent implements OnInit {
     this.ispostoption=false;
   }
 
-
   addComment(postId:string){
     let commentData:Comment={} as Comment;
     commentData.postId=postId;
@@ -56,6 +55,12 @@ export class ViewPostComponent implements OnInit {
       this.postComment='';
       this.postservice.getPostComments(data.postId).subscribe((res)=>{
         this.comments=res;
+
+        // this.comments.forEach((data)=>{
+        //   if(!data.profile){
+        //     data.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+        //   }
+        // })
       })
     });
   }

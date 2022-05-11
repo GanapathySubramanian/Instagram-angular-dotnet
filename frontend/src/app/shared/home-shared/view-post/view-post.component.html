@@ -36,7 +36,7 @@
                   <div class="comments">
                     
                     <div class="comment-container">
-                      <div class="user-img">
+                      <div class="user-img" >
                         <img src={{checkProfileUrl(post.user.profile)}} > 
                       </div>
                       <div class="other-content">
@@ -52,7 +52,7 @@
 
                       <div class="comment-container" *ngFor="let c of comments">
                         <div class="user-img">
-                          <img src="{{c.profile}}" > 
+                          <img src={{checkProfileUrl(c.profile)}} > 
                         </div>
                         <div class="other-content">
                           <span class="username">{{c.username}}</span>

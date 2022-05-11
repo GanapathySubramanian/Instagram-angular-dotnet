@@ -36,12 +36,14 @@ export class CreatePostComponent implements OnInit {
     this.disableupload=true;
     this.disablechoose=true;
     this.authenticatedUser=JSON.parse(localStorage.getItem('user')!);
-    if(this.authenticatedUser.profile==null)
-    {
-      console.log("Empty profile");
-      this.authenticatedUser.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
-    }
     
+  }
+
+  checkProfileUrl(url:any)
+  {
+    if(url!=null)
+      return url;
+    return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
   }
 
 
@@ -99,6 +101,8 @@ export class CreatePostComponent implements OnInit {
       this.isdiscard=false;
       this.disableupload=true;
       this.caption='';
+      this.isaccess=false;
+      this.isadvance=false;
     }
     
     closeDiscard(){

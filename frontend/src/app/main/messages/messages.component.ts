@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/interfaces/user/user';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-messages',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  authenticatedUser:User={} as User;
+  constructor(private userservice:UserService) { 
+    this.authenticatedUser=this.userservice.getAuthUser();
+  }
   show : boolean = true;
 
   ngOnInit(): void {

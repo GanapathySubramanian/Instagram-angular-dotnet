@@ -16,7 +16,7 @@
                 <div class="col-sm">
                     <button class="btn btn-md" (click)="showchooseProfile()" id="editprofile">Edit Profile</button>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm seetings" (click)="showsettings()">
                     <img src="assets/Images/settings.png" id="settings">
                 </div>
                 <div class="col-sm-4"></div>
@@ -457,6 +457,47 @@
                 <p>Manage Sync Settings</p>
             </div>
             <div class="uploadProfile-content" (click)="closeuploadProfile()">
+                <p>Cancel</p>
+            </div>
+        </div>
+
+    </div>  
+</div>
+
+
+<div id="overlay-setting" class="upload-overlay" [ngStyle]="{'display': hidesetting ? 'none' : 'block' }">
+
+    <div id="settings-section">
+
+        <div class="settings-conatiner">
+            <div class="settings-content bb">
+                <p>Change Password</p>
+            </div>
+            <div class="settings-content bb">
+                <p>QR Code</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Apps and Websites</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Notifications</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Privacy and Security</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Login Activity</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Email from Instagram</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Report a Problem</p>
+            </div>
+            <div class="settings-content bb">
+                <p>Logout</p>
+            </div>
+            <div class="settings-content" (click)="closesettings()">
                 <p>Cancel</p>
             </div>
         </div>

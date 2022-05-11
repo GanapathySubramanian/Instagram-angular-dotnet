@@ -986,3 +986,55 @@ background-color: rgba($color: #000000, $alpha:1.0);
   {
    object-fit: cover;   
   }
+
+
+  .upload-overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    cursor: default;
+    overflow-y: scroll;
+    z-index:9999;
+}  
+
+.upload-overlay::-webkit-scrollbar {
+  display: none;
+}
+
+.seetings{
+    cursor: pointer;
+}
+
+
+#settings-section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 525px;
+    background-color:#fff;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border-radius: 15px;
+    cursor:default;
+    z-index: 99999;
+  }
+  
+  .settings-content{
+    p{
+      cursor: pointer;
+      margin:14px ;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .bb{
+    border-bottom: 1px solid #dbdbdb;
+  }
+

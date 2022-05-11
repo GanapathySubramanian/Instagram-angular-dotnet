@@ -159,6 +159,8 @@ export class ViewPostComponent implements OnInit {
     
   }
 
+ 
+  
   checkFormat(){
     const file = this.url;
     this.format='video';

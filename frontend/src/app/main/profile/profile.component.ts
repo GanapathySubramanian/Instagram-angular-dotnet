@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   
   hidechooseProfile:boolean=true;
   hideuploadProfile:boolean=true;
-
+  hidesetting:boolean=true;
   selected:string='';
   
   constructor(private userService: UserService  ,private postservice:PostService,private uploadService: FileUploadService,private toaster:ToastNotificationService) {
@@ -81,6 +81,7 @@ export class ProfileComponent implements OnInit {
   }
 
   
+  
   isImage(url: string) {
     return this.postservice.isImage(url);
   }
@@ -88,11 +89,17 @@ export class ProfileComponent implements OnInit {
   showchooseProfile(){
     this.hidechooseProfile=false;
   }
+  showsettings(){
+    this.hidesetting=false;
+  }
   closechooseProfile(){
     this.hidechooseProfile=true;
   }
   closeuploadProfile(){
     this.hideuploadProfile=true;
+  }
+  closesettings(){
+    this.hidesetting=true;
   }
 
 

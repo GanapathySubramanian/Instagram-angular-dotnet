@@ -169,6 +169,7 @@ export class PostService {
 
             res.postId=res.id
           })
+          data=data.reverse();
           this.profilepost.next(data);
           
         return data;
@@ -265,7 +266,7 @@ export class PostService {
     isImage(url: string) {
 
       // url = url.split('?')[0];
-      return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+      return /\.(jpg|JPG|jpeg|JPEG|png|PNG|webp|WEBP|avif|AVIF|gif|GIF|svg|SVG)$/.test(url);
     }
 
 

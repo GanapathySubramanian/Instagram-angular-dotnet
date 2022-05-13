@@ -8,26 +8,27 @@ import { UserService } from 'src/app/core/services/user/user.service';
   styleUrls: ['./suggestion-component.component.scss']
 })
 export class SuggestionComponentComponent implements OnInit {
+  authenticatedUser: User = {} as User;
+
 
   constructor(private userService: UserService) {
-    this.userService.$authUser.subscribe((data) => {
-      this.authenticatedUser = data;
-    })
+    this.authenticatedUser=this.userService.getAuthUser();
+   
    }
 
   ngOnInit(): void {
     this.authenticatedUser= this.userService.getAuthUser();
   }
-
-  authenticatedUser: User = {} as User;
-
-
-
   checkProfileUrl(url:any)
-  {
+  {  
     if(url!=null)
-      return url;
-    return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    {
+      return 'https://localhost:5001/'+url;
+    }else{
+      
+      
+      return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    }
   }
 
 }

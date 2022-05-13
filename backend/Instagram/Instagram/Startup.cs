@@ -65,10 +65,7 @@ namespace Instagram
             
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+          
 
             app.UseStaticFiles();
 
@@ -79,7 +76,10 @@ namespace Instagram
             });
 
 
-
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
         }
     }

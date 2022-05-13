@@ -16,10 +16,10 @@ namespace Instagram.Data
             }
             var user = new User[]
             {
-                new User{username = "lalith",
-                name = "lalith",
-                email = "yvlk@gmail.com",
-                password = "Yvlk@123",
+                new User{username = "Ganapathy",
+                name = "Ganapathy",
+                email = "gana@gmail.com",
+                password = "Gana@123",
                 profile = "https://variety.com/wp-content/uploads/2022/05/Doctor-STrange-2.jpg?w=681&h=383&crop=1"},
                 new User{username = "vaish_sk",
                 name = "Vaish",

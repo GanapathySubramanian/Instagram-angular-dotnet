@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/core/interfaces/post/post';
 import { Comment } from 'src/app/core/interfaces/react/comment';
 import { Like } from 'src/app/core/interfaces/react/like';
+import { Save } from 'src/app/core/interfaces/react/save';
 import { User } from 'src/app/core/interfaces/user/user';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { UserService } from 'src/app/core/services/user/user.service';
@@ -57,7 +58,7 @@ export class ViewPostComponent implements OnInit {
     this.postservice.commentPost(commentData).subscribe((data)=>{
       this.postComment='';
       this.postservice.getPostComments(data.postId).subscribe((res)=>{
-        this.comments=res;
+        this.comments=res.reverse();
         this.isEmojiPickerVisible=false;
         // this.comments.forEach((data)=>{
         //   if(!data.profile){
@@ -108,6 +109,15 @@ export class ViewPostComponent implements OnInit {
           this.likeStatus = data ? true : false;
           if (this.likeStatus)
             this.like = data;
+        })
+
+        this.postservice.userIsSaved(this.userService.getAuthUser().id,this.postId).subscribe((data)=>{
+          console.log(data);
+          this.saveStatus=data ? true : false;
+          if(this.saveStatus)
+          {
+            this.save=data;
+          }
         })
     });
     
@@ -176,6 +186,7 @@ export class ViewPostComponent implements OnInit {
       this.isdisablePause=false;
       this.isdisablepostview=true;
       this.isEmojiPickerVisible = false;
+      this.postComment='';
     }
   }
     togglePlay(){
@@ -215,8 +226,9 @@ export class ViewPostComponent implements OnInit {
 
   checkProfileUrl(url:any)
   {
-    if(url!=null)
-      return url;
+    if(url!=null){
+      return 'https://localhost:5001/'+url;
+    }
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
   }
 
@@ -229,6 +241,7 @@ export class ViewPostComponent implements OnInit {
   public addEmoji(event:any) {
      this.postComment= `${this.postComment}${event.emoji.native}`;
   }
+
   changeLikeStatus() {
     
     if (this.likeStatus) {
@@ -270,5 +283,45 @@ export class ViewPostComponent implements OnInit {
     }
   }
 
+
+  saveStatus:boolean=false;
+  save:Save={} as Save;
+  changeSaveStatus() {
+    if (this.saveStatus) {
+      console.log("unlike");
+      if (this.save != undefined) {
+        this.postservice.unsavePost(this.save).subscribe((data) => {
+          console.log("unsave");
+          this.saveStatus = false;
+          this.hidePost()
+        },
+        (error)=>{console.log("unlike err"+error);
+        }
+        );
+        
+      }
+    }
+    else {
+      console.log("userid in comp: " + this.userService.getAuthUser().id);
+      console.log("post id" + this.post.postId);
+
+      this.postservice.savePost({
+        userId:this.userService.getAuthUser().id,
+        postId:this.post.postId
+      }).subscribe((data)=>{
+        this.saveStatus=true;
+      })
+
+      this.postservice.userIsSaved(this.userService.getAuthUser().id,this.postId).subscribe((data)=>{
+        console.log(data);
+        this.saveStatus=data ? true : false;
+        if(this.saveStatus)
+        {
+          this.save=data;
+        }
+      })
+
+    }
+  }
       
 }

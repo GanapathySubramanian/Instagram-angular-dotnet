@@ -25,5 +25,6 @@ namespace Instagram.Data
             modelbuilder.Entity<Like>().ToTable("Likes");
             modelbuilder.Entity<Comment>().ToTable("Comments");
         }
+        public DbSet<Instagram.Models.Savedpost> Savedpost { get; set; }
     }
 }

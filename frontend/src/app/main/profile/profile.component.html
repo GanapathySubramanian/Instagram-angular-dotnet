@@ -99,7 +99,7 @@
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="material-icons">grid_on</i><span id="word">POSTS</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="saved-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false"><i class="far fa-bookmark"></i> <span id="word">SAVED</span></a>
+                        <a class="nav-link" id="saved-tab" data-toggle="tab" href="#save" (click)="getSavedData()"role="tab" aria-controls="save" aria-selected="false"><i class="far fa-bookmark"></i> <span id="word">SAVED</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class='far fa-id-badge'></i><span id="word">TAGGED</span></a>
@@ -132,97 +132,19 @@
                     <!--saved tab-->
                     <div class="tab-pane container fade" id="save" role="tabpanel" aria-labelledby="saved-tab">
 
-
                         <div class="row">
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save1.png" class="img-responsive">
+                            <div class="col-sm-4 overlayclass" *ngFor="let posts of savedPosts"  (click)="showPost(posts.postId)">
+                                <img src={{posts.link}} class="img-responsive" *ngIf="isImage(posts.link) && posts.link" >
+                                <video *ngIf="!isImage(posts.link) && posts.link" preload="metadata" width="100%" height="100%">
+                                    <source src={{loadThumbnail(posts.link)}}  alt="post video" autoplay muted  controls >
+                                </video>
                                 <div class="overlay">
                                     <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
+                                        <i class='fas fa-heart'></i> {{posts.likeCount}} &nbsp;&nbsp;
+                                        <i class='fas fa-comment'></i> {{posts.commentCount}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save2.png" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save3.png" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--row 2-->
-                        <div class="row">
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save4.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save5.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/save6.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--row 3-->
-
-                        <div class="row">
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/post7.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/post8.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 overlayclass">
-                                <img src="assets/Images/post9.jpg" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="text">
-                                        <i class='fas fa-heart'></i> 2,400 &nbsp;&nbsp;
-                                        <i class='fas fa-comment'></i> 1,000
-                                    </div>
-                                </div>
+                                <!-- <app-post [postItem]="post" (viewPost)="displayPost($event)"></app-post> -->
                             </div>
                         </div>
                     </div>

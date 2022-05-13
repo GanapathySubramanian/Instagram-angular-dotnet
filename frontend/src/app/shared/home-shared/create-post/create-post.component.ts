@@ -18,12 +18,16 @@ export class CreatePostComponent implements OnInit {
   disableupload:boolean=true;
   disablechoose:boolean=true;
   
+  
   format:any;
   url:any;
   
+  location:string='' 
   caption:string='';
   length:number=0;
-  
+  turnOffLike:number=0;
+  turnOffComment:number=0;
+
   isaccess:boolean=false;
   isadvance=false;
   isdiscard=false;
@@ -47,8 +51,9 @@ export class CreatePostComponent implements OnInit {
 
   checkProfileUrl(url:any)
   {
-    if(url!=null)
-      return url;
+    if(url!=null){
+      return 'https://localhost:5001/'+url;
+    }
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
   }
 
@@ -58,10 +63,22 @@ export class CreatePostComponent implements OnInit {
       this.displaypost(); 
       this.userService.$authUser.subscribe((data) => {
         this.authenticatedUser = data;
-      })
+      })      
     }
 
 
+    changeComment(){
+        this.turnOffComment=1;
+        console.log(this.turnOffComment);
+        
+    }
+
+    changeLike(){
+      
+      this.turnOffLike=1;
+      console.log(this.turnOffLike);
+      
+    }
 
   displaypost() {
     this.postservice.hidepost.subscribe((data)=>{
@@ -175,13 +192,13 @@ export class CreatePostComponent implements OnInit {
 
 
     upload(): void {
-      if (this.selectedFiles) {
+      if (this.selectedFiles&&this.length>0) {
         const file: File | null = this.selectedFiles.item(0);
         this.selectedFiles = undefined;
         if (file) {
           // this.currentFileUpload = new FileUpload(file);
           let count=0;
-          this.postService.uploadPost(file, this.authenticatedUser.id, this.caption).subscribe({
+          this.postService.uploadPost(file, this.authenticatedUser.id).subscribe({
               next: (event) => {
               if (event.type === HttpEventType.UploadProgress && event.total)
                 this.percentage = Math.round(100 * event.loaded / event.total);
@@ -190,12 +207,20 @@ export class CreatePostComponent implements OnInit {
 
                   console.log(event.body);
 
-                  this.postService.createPost(this.authenticatedUser, this.caption,event.body? event.body:'').subscribe({
+                  this.postService.createPost(this.authenticatedUser, this.caption,event.body? event.body:'',this.location,this.turnOffComment,this.turnOffLike).subscribe({
                     next: (data) => {
                       this.caption='';
                       this.isdisableShare=false;
                       this.disableupload=true;
                       this.isEmojiPickerVisible=false;
+                      this.location='';
+                      this.isaccess=false;
+                      this.isadvance=false;
+                      // this.showAccessbility();
+                      // this.showAdvanceSetting();
+                      this.pauseVideo('pause')
+                      this.turnOffComment=0;
+                      this.turnOffLike=0;
                       this.toaster.showSuccess('Post uploaded successfully','success')
                       count=1;
                     },

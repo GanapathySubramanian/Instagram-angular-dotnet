@@ -9,6 +9,7 @@ import {Like} from "../../interfaces/react/like";
 import {PostHover} from "../../interfaces/profile/post-hover";
 import {Post} from "../../interfaces/post/post";
 import { User } from '../../interfaces/user/user';
+import { Save } from '../../interfaces/react/save';
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +42,7 @@ export class PostService {
     return this.http.get(`${this.baseURL}posts/${postId}`).pipe(
       map((data:any) => {
         if(data){
-
-          
           data.link = this.backendURL + data.link;
-
-
           data.postId = data.id;
           return data;
         }
@@ -81,35 +78,35 @@ export class PostService {
 
 
   // Upload Post img to .Net Server
-  uploadPost(file: File, userId: string, caption: string) {
-
+  uploadPost(file: File, userId: string) {
     const formData = new FormData(); 
     formData.append('file', file, userId+file.name);
     console.log("");
-
     return this.http.post(`${this.baseURL}PostUpload`, formData, {reportProgress: true, observe: 'events', responseType: 'text'});
-
   }
 
-  createPost(user: User, caption: string, url: string): Observable<any> {
-    
+  createPost(user: User, caption: string, url: string,loc:string,turnoffcomment:number,turnofflike:number): Observable<any> {  
     console.log("post create:");
     console.log(user.id);
-    // post.likes = 0;
-    // post.comments = 0;
-    return this.http.post(this.baseURL + 'posts/' + user.id, {link: url, caption: caption, userid: user.id});
-
+    return this.http.post(this.baseURL + 'posts/' + user.id, {link: url, caption: caption, userid: user.id,location:loc,commentStatus:turnoffcomment,likeCountStatus:turnofflike})
   }
 
+ 
   likePost( like: Like): Observable<any> {
 
     return this.http.post( this.baseURL + 'Likes', like).pipe(
       map((data) => {
         console.log(data);
-        
-        // this.getPost(like.postId).subscribe( (data: Post) => {
-        //   this.updateLikeCount(like.postId, data.likes+1).subscribe();
-        // });
+        return data;
+    })
+    );
+  }
+
+  savePost( save: Save): Observable<any> {
+
+    return this.http.post( this.baseURL + 'savedposts', save).pipe(
+      map((data) => {
+        console.log(data);
         return data;
     })
     );
@@ -150,6 +147,13 @@ export class PostService {
     );
   }
 
+  unsavePost( unsave: Save): Observable<any> {
+    return this.http.delete( `${this.baseURL}Savedposts/${unsave.saveId}`).pipe(
+      map((data) => {
+        return true;
+      })
+    );
+  }
 
   showCreatePost(){
       this.hidecreatepost.next(false);
@@ -163,10 +167,7 @@ export class PostService {
         console.log(data);
         
           data.forEach((res:any)=>{
-
             res.link = this.backendURL + res.link;
-
-
             res.postId=res.id
           })
           data=data.reverse();
@@ -178,7 +179,6 @@ export class PostService {
   }
 
   getAllPosts():Observable<any>{
-
       return this.http.get( this.baseURL+'Posts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
         map( (data: any) => {
           let posts: PostHover[] = [];
@@ -188,10 +188,37 @@ export class PostService {
           })
         return data;
         })
-      );
-    
+      ); 
   }
 
+//   getAllPostsById(postId:string):Observable<any>{    
+//     return this.http.get( `${this.baseURL}posts/${postId}`,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
+//       map( (data: any) => {
+//         console.log("post by id");
+//         console.log(data);
+//         let posts: PostHover[] = [];
+//         posts.push(data)        
+//         posts.forEach((res:any)=>{
+//           res.postId=res.id
+//           res.link = this.backendURL + res.link;
+//         })
+//       return posts;
+//       })
+//     ); 
+// }
+
+  getAllSavedPosts():Observable<any>{
+    return this.http.get( this.baseURL+'Savedposts' ,{headers:{ "Access-Control-Allow-Origin": "*"}}).pipe(
+      map( (data: any) => {
+        let savedposts: Save[] = [];
+        data.forEach((res:any)=>{
+          res.saveId=res.id
+        })
+      return data;
+      })
+    );
+  
+}
   deletePostById(postid:string,userid:string){
     return this.http.delete( `${this.baseURL}Posts/${postid}`)
     .subscribe(
@@ -241,6 +268,33 @@ export class PostService {
     );
   }
 
+  getPostSaves(postId: string): Observable<any> {
+    return this.http.get(`${this.baseURL}Savedposts`).pipe(
+      map((data: any) => {
+
+        if(data) {
+          let saves: Save[] = [];
+          data.forEach((res:any) => {
+
+            if( postId === res.postId ) {
+              let temp: Save = {
+                saveId: res.id,
+                postId: res.postId,
+                userId: res.userId,
+              }
+              saves.push(temp);
+            }
+          })
+          console.log(saves);
+          return saves;
+      } else{
+        return [];
+      }
+      })
+    );
+  }
+
+
   userIsLiked( userId: string, postId: string): Observable<any> {
     return this.getPostLikes(postId).pipe(
       map((likes: Like[] ) => {
@@ -249,6 +303,15 @@ export class PostService {
     );
   }
 
+  userIsSaved( userId: string, postId: string): Observable<any> {
+    return this.getPostSaves(postId).pipe(
+      map((saves: Save[] ) => {
+        console.log(saves);
+        
+        return saves.find( (save: Save) => save.userId === userId);
+      })
+    );
+  }
 
   showPost(postId: string){
     this.viewpost.next(false);
@@ -281,15 +344,13 @@ export class PostService {
               postId: post.id,
               user: post.user,
               // link: post.link,
-              link: this.backendURL + post.link,
+              link:this.backendURL+post.link,
               caption: post.caption,
               timeStamp:'',
               likes: post.likeCount,
               comments: post.commentCount,
-              profileLink: post.link
+              profileLink:post.link
             }
-
-
             // if(userId !== data.user.id) {
                 posts.push(temp);
             // }

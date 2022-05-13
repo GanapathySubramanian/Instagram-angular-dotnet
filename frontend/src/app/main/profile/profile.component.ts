@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PostHover } from 'src/app/core/interfaces/profile/post-hover';
 import { User } from 'src/app/core/interfaces/user/user';
@@ -29,9 +30,9 @@ export class ProfileComponent implements OnInit {
   hideuploadProfile:boolean=true;
   hidesetting:boolean=true;
   selected:string='';
-  
+  savedPosts:any[]=[];
   constructor(private userService: UserService  ,private postservice:PostService,private uploadService: FileUploadService,private toaster:ToastNotificationService) {
-    
+  
     this.authenticatedUser = this.userService.getAuthUser();
     this.getUser();
     this.userService.$authUser.subscribe((data) => {
@@ -41,11 +42,30 @@ export class ProfileComponent implements OnInit {
       this.postDetails=data;
       console.log(data);  
     })
-  }
+    this.getSavedData()
 
+}
+
+
+  getSavedData(){
+    this.postservice.getAllSavedPosts().subscribe((data)=>{
+      data=data.filter((temp:any)=>temp.userId==this.userService.getAuthUser().id)
+      this.postservice.getAllPosts().subscribe((res)=>{
+        let finalArr:any[]=[];
+        res.forEach((val:any)=>{
+          data.forEach((val2:any)=>{
+              if(val.postId==val2.postId){
+                    finalArr.push(val)
+              }
+          })
+        })
+        this.savedPosts=finalArr;
+      })
+    })
+
+  } 
   ngOnInit(): void {
-    this.userService.updateProfile(this.userService.getAuthUser().id);
-    
+    this.getSavedData()
   }
 
   displayPost(postId:string){
@@ -68,12 +88,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {  
-   
-    if(this.authenticatedUser.profile==null)
-    {
-      console.log("Empty profile");
-      this.authenticatedUser.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
-    }
+    
     this.postservice.viewProfilePosts(this.authenticatedUser.id).subscribe((data)=>{
        this.postDetails=data;
        console.log(this.postDetails);
@@ -112,41 +127,59 @@ export class ProfileComponent implements OnInit {
 
 }
 
-  uploadProfile(): void {
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-      this.selectedFiles = undefined;
-      if (file) {
-        this.currentFileUpload = new FileUpload(file);
-        let count=0;
-        this.uploadService.pushFileToStorage(this.currentFileUpload,this.authenticatedUser.id,'profile').subscribe(
-          percentage => {
-            this.percentage = Math.round(percentage ? percentage : 0);
-            this.isdisableok=true;
-            if(this.percentage==100){      
-              this.hidechooseProfile=true;
-              this.hideuploadProfile=true;
-              if(count===0){
-                this.toaster.showSuccess('Profile updated successfully','success')
-                count=1;
-              }
-            this.isdisableok=false;
+uploadProfile(): void {
+  if (this.selectedFiles) {
+    const file: File | null = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+    if (file) {
+      // this.currentFileUpload = new FileUpload(file);
+      let count=0;
+      this.postservice.uploadPost(file, this.authenticatedUser.id).subscribe({
+          next: (event) => {
+          if (event.type === HttpEventType.UploadProgress && event.total)
+            this.percentage = Math.round(100 * event.loaded / event.total);
+          else if (event.type === HttpEventType.Response) {
+            if(count===0){
+                console.log("ASasnasjnj");
+                
+              console.log(event.body);
+
+              this.userService.uploadProfilePost(this.authenticatedUser,event.body? event.body:'').subscribe({
+                next: (data) => {
+                this.userService.updateProfile(this.userService.getAuthUser().id);
+                  console.log('uploaded');
+                  
+                  this.hideuploadProfile=true;
+                  this.toaster.showSuccess('Post uploaded successfully','success')
+                  count=1;
+                },
+                error: (e) => {
+                  console.log("error in profile upload");        
+                },
+                complete: () => {
+                }
+            })
+              
+             
             }
-          },
-          error => {
-            console.log(error);
-            this.toaster.showError('Profile updated Failed','error')
           }
-        );
-      }
+        },
+        error: (err: HttpErrorResponse) => console.log(err)
+      });
     }
   }
+}
 
+  
 
   checkProfileUrl(url:any)
   {
-    if(url!=null)
-      return url;
-    return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+
+    if(url)
+    {
+      return 'https://localhost:5001/'+url;
+    }else{
+      return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    }
   }
 }

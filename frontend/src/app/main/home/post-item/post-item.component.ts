@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 import { Like } from 'src/app/core/interfaces/react/like';
 import { User } from 'src/app/core/interfaces/user/user';
 import { Comment } from 'src/app/core/interfaces/react/comment';
+import { Save } from 'src/app/core/interfaces/react/save';
 @Component({
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
@@ -29,7 +30,6 @@ export class PostItemComponent implements OnInit {
   isdisablePause: boolean = false;
 
   ngOnInit(): void {
-    // if(this.post.liked != undefined)
     this.likeStatus = this.post.liked ? true : false;
 
     console.log("post");
@@ -40,6 +40,15 @@ export class PostItemComponent implements OnInit {
       this.likeStatus = data ? true : false;
       if (this.likeStatus)
         this.like = data;
+    })
+    
+    this.postService.userIsSaved(this.userService.getAuthUser().id,this.post.postId).subscribe((data)=>{
+      console.log(data);
+      this.saveStatus=data ? true : false;
+      if(this.saveStatus)
+      {
+        this.save=data;
+      }
     })
   }
 
@@ -131,11 +140,56 @@ export class PostItemComponent implements OnInit {
 
   }
 
+  
+  saveStatus:boolean=false;
+  save:Save={} as Save;
+  changeSaveStatus() {
+    if (this.saveStatus) {
+      console.log("unlike");
+      if (this.save != undefined) {
+        this.postService.unsavePost(this.save).subscribe((data) => {
+          console.log("unsave");
+          
+          this.saveStatus = false;
+        },
+        (error)=>{console.log("unlike err"+error);
+        }
+        );
+        
+      }
+    }
+    else {
+      console.log("userid in comp: " + this.userService.getAuthUser().id);
+      console.log("post id" + this.post.postId);
+
+      this.postService.savePost({
+        userId:this.userService.getAuthUser().id,
+        postId:this.post.postId
+      }).subscribe((data)=>{
+        this.saveStatus=true;
+      })
+
+      this.postService.userIsSaved(this.userService.getAuthUser().id,this.post.postId).subscribe((data)=>{
+        console.log(data);
+        this.saveStatus=data ? true : false;
+        if(this.saveStatus)
+        {
+          this.save=data;
+        }
+      })
+
+    }
+  }
+
+
   checkProfileUrl(url:any)
   {
     if(url!=null)
-      return url;
-    return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    {
+      return 'https://localhost:5001/'+url;
+    }else{
+      return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    }
   }
 
 }

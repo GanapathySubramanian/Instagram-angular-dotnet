@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
       this.authenticatedUser = data;
     })
    }
+
+   
   authenticatedUser: User={} as User;
   home: string = "assets/Images/home3.png";
   chat: string = "assets/Images/emptychat.png";
@@ -117,8 +119,9 @@ export class NavbarComponent implements OnInit {
 
   checkProfileUrl(url:any)
   {
-    if(url!=null)
-      return url;
+    if(url!=null){
+      return 'https://localhost:5001/'+url;
+    }
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
   }
 

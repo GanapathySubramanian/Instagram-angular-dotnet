@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Instagram.Data;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Instagram.Controllers
 {
@@ -24,7 +26,7 @@ namespace Instagram.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.User.Include(u => u.post).ToListAsync();
+            return await _context.User.ToListAsync();
         }
 
         // GET: api/Users/5
@@ -70,7 +72,29 @@ namespace Instagram.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction("GetUser", new { user.id }, user);
+        }
+
+        // POST: api/Users
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost("{id}")]
+        public async Task<ActionResult<User>> PostUser(int id,User user)
+        {
+
+            var data = _context.User.Where(x => x.id == id).FirstOrDefault();
+            if (data == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                data.profile = user.profile;
+            }
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = user.id }, user);
+           
         }
 
         // POST: api/Users
@@ -83,6 +107,7 @@ namespace Instagram.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.id }, user);
+
         }
 
         // DELETE: api/Users/5

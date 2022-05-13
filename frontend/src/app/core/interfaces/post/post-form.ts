@@ -1,5 +1,3 @@
-import {FileUpload} from "../../models/file-upload";
-
 export interface PostForm {
   userid: string;
   link: string,
@@ -7,4 +5,7 @@ export interface PostForm {
   timeStamp: Date;
   likes?: number;
   comments?: number;
+  location?:string;
+  turnoffcomment:number;
+  likecountstatus:number;
 }

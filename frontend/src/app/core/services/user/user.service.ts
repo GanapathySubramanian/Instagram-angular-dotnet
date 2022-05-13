@@ -11,7 +11,7 @@ export class UserService {
 
 
   private baseURL: string = 'https://localhost:5001/api/';
-
+  private backendURL: string = 'https://localhost:5001/'
   private _authUser = new Subject<User>();
   readonly $authUser = this._authUser.asObservable();
   private authUser: User = {} as User;
@@ -52,6 +52,12 @@ export class UserService {
     }))
   }
 
+  // uploadProfilePost(user:User,url:string){
+  //   console.log(user);
+  //   console.log(url);
+  //   return this.http.post(this.baseURL + 'users/profile/' + user.id, {user:user,url:url})
+  // }
+
   getUserWithUsername( username: string): Observable<any> {
     return this.getUsers().pipe(
       map((users: User[]) => users.find( ( user: User ) => username === user.username))
@@ -64,20 +70,23 @@ export class UserService {
     );
   }
 
-  uploadProfilePic( userId: string, url: string): Observable<any> {
-    return this.http.patch(`${this.baseURL}/users/${userId}.json`, { profile: url  });
+  uploadProfilePost( user:User, url: string): Observable<any> {
+    user.profile=url;
+    console.log(user); 
+    let data:User={} as User;
+    data=user;
+    return this.http.post(`${this.baseURL}users/${user.id}`,user);
   }
 
   getAuthUser() {
-    return JSON.parse(localStorage.getItem('user')!);
+    var data=JSON.parse(localStorage.getItem('user')!);
+    console.log(data);
+    return data;
   }
 
  
   updateProfile(id: string) {
-
-
-    this.getUserWithId(id).subscribe((data) => {
-        
+    this.getUserWithId(id).subscribe((data) => { 
         if(data){
           console.log("update profile: " );
           console.log(data);
@@ -86,6 +95,7 @@ export class UserService {
         }    
         
       })
+      this.getAuthUser()
   }
 
 }

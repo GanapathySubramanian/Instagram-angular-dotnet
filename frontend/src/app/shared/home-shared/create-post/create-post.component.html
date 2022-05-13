@@ -74,7 +74,7 @@
                         <div class="footer">
                 
                             <div class="location">
-                                <input type="text" placeholder="Add location">
+                                <input type="text" [(ngModel)]="location" placeholder="Add location">
                             </div>
                 
                             <div class="accessbility" id="accessbility" >
@@ -114,7 +114,7 @@
                                     <div class="head">
                                         <p>Hide like and view counts on this post</p>
                                         <label class="switch">
-                                            <input type="checkbox">
+                                            <input type="checkbox" [(ngModel)]='turnOffComment' (ngModelChange)="changeComment()">>
                                             <span class="slider round"></span>
                                         </label>                                          
                                     </div>
@@ -122,7 +122,7 @@
                                     <div class="head">
                                         <p>Turn off commenting</p>
                                         <label class="switch">
-                                            <input type="checkbox">
+                                            <input type="checkbox" [(ngModel)]='turnOffLike' (ngModelChange)="changeLike()">>
                                             <span class="slider round"></span>
                                           </label>                                          
                                     </div>

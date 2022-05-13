@@ -21,7 +21,7 @@ export class SuggestionComponentComponent implements OnInit {
   }
   checkProfileUrl(url:any)
   {  
-    if(url!=null)
+    if(url)
     {
       return 'https://localhost:5001/'+url;
     }else{

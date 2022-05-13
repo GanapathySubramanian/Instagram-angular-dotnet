@@ -127,6 +127,13 @@ export class ProfileComponent implements OnInit {
 
 }
 
+removeProfile(){
+  this.userService.removeProfile(this.authenticatedUser).subscribe((res)=>{
+    localStorage.setItem('user', JSON.stringify(res));
+    this.hidechooseProfile=true;
+    this.toaster.showSuccess('profile removed successfully','success')
+  });
+}
 uploadProfile(): void {
   if (this.selectedFiles) {
     const file: File | null = this.selectedFiles.item(0);
@@ -148,9 +155,8 @@ uploadProfile(): void {
                 next: (data) => {
                 this.userService.updateProfile(this.userService.getAuthUser().id);
                   console.log('uploaded');
-                  
                   this.hideuploadProfile=true;
-                  this.toaster.showSuccess('Post uploaded successfully','success')
+                  this.toaster.showSuccess('profile updated successfully','success')
                   count=1;
                 },
                 error: (e) => {

@@ -95,7 +95,12 @@ export class UserService {
         }    
         
       })
-      this.getAuthUser()
+   
   }
 
+  removeProfile(user:User):Observable<any>{
+    user.profile=null;
+    console.log(user); 
+    return this.http.post(`${this.baseURL}users/${user.id}`,user);
+  }
 }

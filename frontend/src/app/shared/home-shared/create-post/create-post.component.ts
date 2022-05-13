@@ -51,10 +51,12 @@ export class CreatePostComponent implements OnInit {
 
   checkProfileUrl(url:any)
   {
-    if(url!=null){
+    if(url){
       return 'https://localhost:5001/'+url;
-    }
+    }else{
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+
+    }
   }
 
 

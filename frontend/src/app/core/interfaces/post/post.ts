@@ -13,4 +13,5 @@ export interface Post {
   profileLink?: string;
   liked?: Like;
   isLiked?: boolean;
+  location:string;
 }

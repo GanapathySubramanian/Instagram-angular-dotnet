@@ -349,7 +349,8 @@ export class PostService {
               timeStamp:'',
               likes: post.likeCount,
               comments: post.commentCount,
-              profileLink:post.link
+              profileLink:post.link,
+              location:post.location
             }
             // if(userId !== data.user.id) {
                 posts.push(temp);

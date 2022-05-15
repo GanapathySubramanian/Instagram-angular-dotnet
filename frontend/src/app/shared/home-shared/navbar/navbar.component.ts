@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     this.userService.$authUser.subscribe((data) => {
       this.authenticatedUser = data;
     })
+    // this.home="assets/Images/filledhome1.png";
    }
 
    

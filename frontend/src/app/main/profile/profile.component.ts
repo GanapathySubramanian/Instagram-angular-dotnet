@@ -131,6 +131,7 @@ removeProfile(){
   this.userService.removeProfile(this.authenticatedUser).subscribe((res)=>{
     localStorage.setItem('user', JSON.stringify(res));
     this.hidechooseProfile=true;
+    
     this.toaster.showSuccess('profile removed successfully','success')
   });
 }

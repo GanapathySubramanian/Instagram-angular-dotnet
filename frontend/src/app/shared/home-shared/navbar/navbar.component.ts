@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
     this.userService.$authUser.subscribe((data) => {
       this.authenticatedUser = data;
     })
-    // this.home="assets/Images/filledhome1.png";
    }
 
    
@@ -110,11 +109,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticatedUser=JSON.parse(localStorage.getItem('user')!);
-    // if(this.authenticatedUser.profile==null)
-    // {
-    //   console.log("Empty profile");
-    //   this.authenticatedUser.profile="https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
-    // }
   }
 
 

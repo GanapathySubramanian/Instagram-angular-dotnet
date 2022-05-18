@@ -30,12 +30,25 @@ namespace Instagram
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            
+            string dir = @"./Resources/PostFiles";
+// If directory does not exist, create it
+if (!Directory.Exists(dir))
+{
+    Directory.CreateDirectory(dir);
+}
 
+            var server = Configuration["DBServer"] ?? "ms-sql-server";
+            var port = Configuration["DBPort"] ?? "1443";
+            var user = Configuration["DBUser"] ?? "SA";
+            var password = Configuration["DBPassword"] ?? "Admin@123!";
+            var database = Configuration["Database"] ?? "Instagram";
             services.AddDbContext<PostsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer($"Data Source={server};User ID={user};Password={password};Connect Timeout=30;Encrypt=False;Database={database};TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            // services.AddDbContext<PostsContext>(options =>
+            //     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+services.AddControllers(); 
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -58,6 +71,7 @@ namespace Instagram
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -73,9 +87,8 @@ namespace Instagram
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                RequestPath = new PathString("/Resources")
+                RequestPath = new PathString("/Instagram/Resources")
             });
-
 
             app.UseEndpoints(endpoints =>
             {

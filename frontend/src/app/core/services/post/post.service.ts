@@ -32,8 +32,8 @@ export class PostService {
   private profilepost = new BehaviorSubject<PostHover[]>([]);
   $profilepost = this.profilepost.asObservable();
 
-  private baseURL: string = 'https://localhost:5001/api/'
-  private backendURL: string = 'https://localhost:5001/'
+  private baseURL: string = 'https://kwuyw1vw65.execute-api.us-east-1.amazonaws.com/api/'
+  private backendURL: string = ''
   
 
   constructor( private http: HttpClient) { }
@@ -328,7 +328,7 @@ export class PostService {
 
     isImage(url: string) {
 
-      // url = url.split('?')[0];
+      url = url.split('?')[0];
       return /\.(jpg|JPG|jpeg|JPEG|png|PNG|webp|WEBP|avif|AVIF|gif|GIF|svg|SVG)$/.test(url);
     }
 

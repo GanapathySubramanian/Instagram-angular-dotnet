@@ -23,7 +23,7 @@ export class SuggestionComponentComponent implements OnInit {
   {  
     if(url)
     {
-      return 'https://localhost:5001/'+url;
+      return url;
     }else{
       
       

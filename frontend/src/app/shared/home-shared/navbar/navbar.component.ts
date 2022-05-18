@@ -115,7 +115,7 @@ export class NavbarComponent implements OnInit {
   checkProfileUrl(url:any)
   {
     if(url){
-      return 'https://localhost:5001/'+url;
+      return url;
     }else{
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
 

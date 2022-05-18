@@ -34,7 +34,7 @@ namespace Instagram.Data
                     likeCount = 4,
                     commentCount=7,
                     caption = "Doctor Strange in the Multiverse of Madness 🔥🔥🔥",
-                    user=user[0]
+                    user=user[1]
                 },
                 new Post
                 {
@@ -50,7 +50,7 @@ namespace Instagram.Data
                     likeCount = 5,
                     commentCount=1,
                     caption="Spiderman Nowayhome 🕷🕷🕷",
-                    user=user[0]
+                    user=user[1]
                 },
                 new Post
                 {
@@ -66,20 +66,21 @@ namespace Instagram.Data
                     likeCount = 10,
                     commentCount=0,
                     caption="Anime 😀😀😀",
-                    user=user[0]
+                    user=user[1]
                 },
 
             };
-           /* foreach (Post s in posts)
+            /*foreach (Post s in posts)
             {
                 context.Posts.Add(s);
             }
-            context.SaveChanges();
+            context.SaveChanges();*/
+
             foreach (User c in user)
             {
                 context.User.Add(c);
             }
-            context.SaveChanges();*/
+            context.SaveChanges();
 
         }
     }

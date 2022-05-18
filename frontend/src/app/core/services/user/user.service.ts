@@ -10,8 +10,8 @@ import {map, Observable, Subject} from "rxjs";
 export class UserService {
 
 
-  private baseURL: string = 'https://localhost:5001/api/';
-  private backendURL: string = 'https://localhost:5001/'
+  private baseURL: string = 'https://kwuyw1vw65.execute-api.us-east-1.amazonaws.com/api/';
+  private backendURL: string = ''
   private _authUser = new Subject<User>();
   readonly $authUser = this._authUser.asObservable();
   private authUser: User = {} as User;
@@ -86,7 +86,7 @@ export class UserService {
 
  
   updateProfile(id: string) {
-    this.getUserWithId(id).subscribe((data) => { 
+    this.getUserWithId(id).subscribe((data:any) => { 
         if(data){
           console.log("update profile: " );
           console.log(data);

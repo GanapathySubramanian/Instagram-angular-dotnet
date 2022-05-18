@@ -44,7 +44,8 @@ namespace Instagram
             var password = "admin12345";
             var database = "Instagram";
             services.AddDbContext<PostsContext>(options =>
-                options.UseSqlServer($"Data Source={server};User ID={user};Password={password};Connect Timeout=30;Encrypt=False;Database={database};TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+               options.UseSqlServer($"Data Source=insta-db.ca8hagjkzl9h.us-east-1.rds.amazonaws.com; Initial Catalog=Instagram; User Id=admin;Password=admin12345"));
+         
             // services.AddDbContext<PostsContext>(options =>
             //     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -82,13 +83,13 @@ services.AddControllers();
 
           
 
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
 
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                RequestPath = new PathString("/Instagram/Resources")
-            });
+            // app.UseStaticFiles(new StaticFileOptions()
+            // {
+            //     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+            //     RequestPath = new PathString("/Instagram/Resources")
+            // });
 
             app.UseEndpoints(endpoints =>
             {

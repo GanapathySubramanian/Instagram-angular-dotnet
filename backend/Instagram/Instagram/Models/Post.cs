@@ -19,6 +19,7 @@ namespace Instagram
         public int commentStatus { get; set; }
 
         public int likeCountStatus { get; set; }
+        
         public DateTime timeStamp { get; set; }
         public User user { get; set; }
     }

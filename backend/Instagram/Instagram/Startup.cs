@@ -32,11 +32,11 @@ namespace Instagram
         {
             
             string dir = @"./Resources/PostFiles";
-// If directory does not exist, create it
-if (!Directory.Exists(dir))
-{
-    Directory.CreateDirectory(dir);
-}
+            // If directory does not exist, create it
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
 
             var server = Configuration["DBServer"] ?? "ms-sql-server";
             var port = Configuration["DBPort"] ?? "1443";

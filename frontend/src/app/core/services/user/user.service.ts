@@ -10,8 +10,8 @@ import {map, Observable, Subject} from "rxjs";
 export class UserService {
 
 
-  private baseURL: string = 'https://localhost:5001/api/';
-  private backendURL: string = 'https://localhost:5001/'
+  private baseURL: string = 'http://54.87.204.229:8080/api/';
+  private backendURL: string = 'http://54.87.204.229:8080/Instagram/'
   private _authUser = new Subject<User>();
   readonly $authUser = this._authUser.asObservable();
   private authUser: User = {} as User;

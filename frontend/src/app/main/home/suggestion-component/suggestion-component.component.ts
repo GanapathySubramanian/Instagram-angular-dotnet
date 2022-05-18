@@ -23,7 +23,7 @@ export class SuggestionComponentComponent implements OnInit {
   {  
     if(url)
     {
-      return 'https://localhost:5001/'+url;
+      return 'http://54.87.204.229:8080/Instagram/'+url;
     }else{
       
       

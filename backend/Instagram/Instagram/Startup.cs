@@ -31,18 +31,18 @@ namespace Instagram
         public void ConfigureServices(IServiceCollection services)
         {
             
-            string dir = @"./Resources/PostFiles";
-// If directory does not exist, create it
-if (!Directory.Exists(dir))
-{
-    Directory.CreateDirectory(dir);
-}
+//string dir = @"./Resources/PostFiles";
+//  If directory does not exist, create it
+// if (!Directory.Exists(dir))
+// {
+//     Directory.CreateDirectory(dir);
+// }
 
-            var server = Configuration["DBServer"] ?? "ms-sql-server";
-            var port = Configuration["DBPort"] ?? "1443";
-            var user = Configuration["DBUser"] ?? "SA";
-            var password = Configuration["DBPassword"] ?? "Admin@123!";
-            var database = Configuration["Database"] ?? "Instagram";
+            var server = "insta-db.ca8hagjkzl9h.us-east-1.rds.amazonaws.com";
+            var port = "1443";
+            var user = "admin";
+            var password = "admin12345";
+            var database = "Instagram";
             services.AddDbContext<PostsContext>(options =>
                 options.UseSqlServer($"Data Source={server};User ID={user};Password={password};Connect Timeout=30;Encrypt=False;Database={database};TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
             // services.AddDbContext<PostsContext>(options =>

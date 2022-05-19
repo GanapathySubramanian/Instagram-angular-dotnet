@@ -37,16 +37,9 @@ namespace Instagram
             {
                 Directory.CreateDirectory(dir);
             }
-
-            var server = Configuration["DBServer"] ?? "ms-sql-server";
-            var port = Configuration["DBPort"] ?? "1443";
-            var user = Configuration["DBUser"] ?? "SA";
-            var password = Configuration["DBPassword"] ?? "Admin@123!";
-            var database = Configuration["Database"] ?? "Instagram";
+  
             services.AddDbContext<PostsContext>(options =>
-                options.UseSqlServer($"Data Source={server};User ID={user};Password={password};Connect Timeout=30;Encrypt=False;Database={database};TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-            // services.AddDbContext<PostsContext>(options =>
-            //     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 services.AddControllers(); 
             services.AddCors(options =>
@@ -87,7 +80,7 @@ services.AddControllers();
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                RequestPath = new PathString("/Instagram/Resources")
+                RequestPath = new PathString("/Resources")
             });
 
             app.UseEndpoints(endpoints =>

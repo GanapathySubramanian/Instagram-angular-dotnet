@@ -24,7 +24,7 @@ export class StoryComponentComponent implements OnInit {
   checkProfileUrl(url:any)
   {
     if(url){
-      return 'http://54.87.204.229:8080/Instagram/'+url;
+      return 'https://localhost:5001/'+url;
     }
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
   }

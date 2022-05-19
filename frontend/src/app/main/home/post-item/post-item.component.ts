@@ -186,7 +186,7 @@ export class PostItemComponent implements OnInit {
   {
     if(url)
     {
-      return 'http://54.87.204.229:8080/Instagram/'+url;
+      return 'https://localhost:5001/'+url;
     }else{
       return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
     }

@@ -32,8 +32,8 @@ export class PostService {
   private profilepost = new BehaviorSubject<PostHover[]>([]);
   $profilepost = this.profilepost.asObservable();
 
-  private baseURL: string = 'http://54.87.204.229:8080/api/'
-  private backendURL: string = 'http://54.87.204.229:8080/Instagram/'
+  private baseURL: string = 'http://18.204.13.27:8080/api/'
+  private backendURL: string = 'http://18.204.13.27:8080/Instagram/'
   
 
   constructor( private http: HttpClient) { }

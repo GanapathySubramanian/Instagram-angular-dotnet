@@ -227,7 +227,7 @@ export class ViewPostComponent implements OnInit {
   checkProfileUrl(url:any)
   {
     if(url){
-      return 'http://54.87.204.229:8080/Instagram/'+url;
+      return 'http://18.204.13.27:8080/Instagram/'+url;
     }else{
     return "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
 
